@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AntConfiguration">
+    <buildFile url="file://$PROJECT_DIR$/server/build.xml" />
+    <buildFile url="file://$PROJECT_DIR$/client/ant-build.xml" />
+    <buildFile url="file://$PROJECT_DIR$/command/build.xml" />
+    <buildFile url="file://$PROJECT_DIR$/donkey/build.xml" />
+    <buildFile url="file://$PROJECT_DIR$/generator/build.xml" />
+    <buildFile url="file://$PROJECT_DIR$/manager/ant-build.xml" />
+    <buildFile url="file://$PROJECT_DIR$/webadmin/build.xml" />
+    <buildFile url="file://$PROJECT_DIR$/server/mirth-build.xml" />
+  </component>
+</project>

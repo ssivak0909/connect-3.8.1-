@@ -1,0 +1,660 @@
+ERROR 2020-04-01 10:45:52,016 [main] com.mirth.connect.server.extprops.ExtensionStatuses: Unable to read mirth.properties.
+java.io.FileNotFoundException: ./conf/mirth.properties (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at com.mirth.connect.server.extprops.ExtensionStatuses.<init>(ExtensionStatuses.java:52)
+	at com.mirth.connect.server.extprops.ExtensionStatuses.getInstance(ExtensionStatuses.java:36)
+	at com.mirth.connect.server.ExtensionLoader.getControllerClass(ExtensionLoader.java:86)
+	at com.mirth.connect.server.ExtensionLoader.getControllerInstance(ExtensionLoader.java:125)
+	at com.mirth.connect.server.controllers.DonkeyEngineController.getInstance(DonkeyEngineController.java:154)
+	at com.mirth.connect.server.controllers.DefaultControllerFactory.createEngineController(DefaultControllerFactory.java:34)
+	at com.mirth.connect.server.Mirth.<init>(Mirth.java:79)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:93)
+ERROR 2020-04-01 10:45:52,030 [main] com.mirth.connect.server.extprops.ExtensionStatuses: Unable to find appdata directory: appdata
+ERROR 2020-04-01 10:45:52,066 [main] com.mirth.connect.server.ExtensionLoader: Error loading extension metadata.
+java.lang.IllegalArgumentException: Parameter 'directory' is not a directory
+	at org.apache.commons.io.FileUtils.validateListFilesParameters(FileUtils.java:478)
+	at org.apache.commons.io.FileUtils.listFiles(FileUtils.java:454)
+	at com.mirth.connect.server.ExtensionLoader.loadExtensions(ExtensionLoader.java:185)
+	at com.mirth.connect.server.ExtensionLoader.getPluginMetaData(ExtensionLoader.java:67)
+	at com.mirth.connect.server.ExtensionLoader.getControllerClass(ExtensionLoader.java:88)
+	at com.mirth.connect.server.ExtensionLoader.getControllerInstance(ExtensionLoader.java:125)
+	at com.mirth.connect.server.controllers.DonkeyEngineController.getInstance(DonkeyEngineController.java:154)
+	at com.mirth.connect.server.controllers.DefaultControllerFactory.createEngineController(DefaultControllerFactory.java:34)
+	at com.mirth.connect.server.Mirth.<init>(Mirth.java:79)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:93)
+ERROR 2020-04-01 10:45:53,102 [main] com.mirth.connect.server.controllers.DefaultConfigurationController: Failed to initialize configuration controller
+java.io.FileNotFoundException: version.properties (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.mirth.connect.server.util.ResourceUtil.getResourceStream(ResourceUtil.java:39)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.initialize(DefaultConfigurationController.java:223)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.create(DefaultConfigurationController.java:203)
+	at com.mirth.connect.server.controllers.DefaultControllerFactory.createConfigurationController(DefaultControllerFactory.java:30)
+	at com.mirth.connect.server.controllers.DonkeyEngineController.<init>(DonkeyEngineController.java:167)
+	at com.mirth.connect.server.controllers.DonkeyEngineController.getInstance(DonkeyEngineController.java:157)
+	at com.mirth.connect.server.controllers.DefaultControllerFactory.createEngineController(DefaultControllerFactory.java:34)
+	at com.mirth.connect.server.Mirth.<init>(Mirth.java:79)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:93)
+ERROR 2020-04-01 10:45:53,230 [Main Server Thread] com.mirth.connect.server.Mirth: could not load version.properties
+java.io.FileNotFoundException: version.properties (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.mirth.connect.server.util.ResourceUtil.getResourceStream(ResourceUtil.java:39)
+	at com.mirth.connect.server.Mirth.initResources(Mirth.java:185)
+	at com.mirth.connect.server.Mirth.run(Mirth.java:118)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:94)
+ERROR 2020-04-01 10:45:53,604 [Main Server Thread] com.mirth.connect.server.controllers.DefaultConfigurationController: Could not initialize security settings.
+java.io.FileNotFoundException: null/conf/mirth.properties (No such file or directory)
+	at java.io.FileOutputStream.open0(Native Method)
+	at java.io.FileOutputStream.open(FileOutputStream.java:270)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:213)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:162)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.saveMirthConfig(DefaultConfigurationController.java:1205)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.initializeSecuritySettings(DefaultConfigurationController.java:1118)
+	at com.mirth.connect.server.Mirth.startup(Mirth.java:208)
+	at com.mirth.connect.server.Mirth.run(Mirth.java:154)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:94)
+WARN  2020-04-01 10:45:57,560 [Main Server Thread] com.mirth.connect.server.Mirth: Could not start web server.
+java.io.FileNotFoundException: appdata/keystore.jks (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at com.mirth.connect.server.MirthWebServer.createSSLConnector(MirthWebServer.java:368)
+	at com.mirth.connect.server.MirthWebServer.<init>(MirthWebServer.java:150)
+	at com.mirth.connect.server.Mirth.startWebServer(Mirth.java:385)
+	at com.mirth.connect.server.Mirth.startup(Mirth.java:265)
+	at com.mirth.connect.server.Mirth.run(Mirth.java:154)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:94)
+WARN  2020-04-01 10:45:57,984 [Main Server Thread] com.mirth.connect.server.Mirth: Unable to initialize library resources.
+com.mirth.connect.donkey.util.xstream.SerializerException: com.mirth.connect.donkey.util.xstream.SerializerException: java.lang.NullPointerException
+	at com.mirth.connect.donkey.util.xstream.XStreamSerializer.serialize(XStreamSerializer.java:86)
+	at com.mirth.connect.model.converters.ObjectXMLSerializer.serialize(ObjectXMLSerializer.java:231)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.getResources(DefaultConfigurationController.java:986)
+	at com.mirth.connect.server.Mirth.startup(Mirth.java:282)
+	at com.mirth.connect.server.Mirth.run(Mirth.java:154)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:94)
+Caused by: com.mirth.connect.donkey.util.xstream.SerializerException: java.lang.NullPointerException
+	at com.mirth.connect.donkey.util.xstream.XStreamSerializer.serialize(XStreamSerializer.java:86)
+	at com.mirth.connect.model.converters.ObjectXMLSerializer.serialize(ObjectXMLSerializer.java:231)
+	at com.mirth.connect.model.converters.ResourcePropertiesConverter.marshal(ResourcePropertiesConverter.java:60)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convert(TreeMarshaller.java:70)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:58)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter.marshallField(AbstractReflectionConverter.java:250)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter$2.writeField(AbstractReflectionConverter.java:226)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter$2.<init>(AbstractReflectionConverter.java:189)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter.doMarshal(AbstractReflectionConverter.java:135)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter.marshal(AbstractReflectionConverter.java:83)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convert(TreeMarshaller.java:70)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:58)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:43)
+	at com.thoughtworks.xstream.core.TreeMarshaller.start(TreeMarshaller.java:82)
+	at com.thoughtworks.xstream.core.AbstractTreeMarshallingStrategy.marshal(AbstractTreeMarshallingStrategy.java:37)
+	at com.thoughtworks.xstream.XStream.marshal(XStream.java:1022)
+	at com.thoughtworks.xstream.XStream.marshal(XStream.java:1011)
+	at com.thoughtworks.xstream.XStream.toXML(XStream.java:984)
+	at com.thoughtworks.xstream.XStream.toXML(XStream.java:971)
+	at com.mirth.connect.donkey.util.xstream.XStreamSerializer.serialize(XStreamSerializer.java:84)
+	... 5 more
+Caused by: java.lang.NullPointerException
+	at com.thoughtworks.xstream.io.xml.PrettyPrintWriter.writeText(PrettyPrintWriter.java:235)
+	at com.thoughtworks.xstream.io.xml.PrettyPrintWriter.writeAttributeValue(PrettyPrintWriter.java:227)
+	at com.thoughtworks.xstream.io.xml.PrettyPrintWriter.addAttribute(PrettyPrintWriter.java:222)
+	at com.mirth.connect.model.converters.MigratableConverter.marshal(MigratableConverter.java:56)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convert(TreeMarshaller.java:70)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:58)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:43)
+	at com.thoughtworks.xstream.core.TreeMarshaller.start(TreeMarshaller.java:82)
+	at com.thoughtworks.xstream.core.AbstractTreeMarshallingStrategy.marshal(AbstractTreeMarshallingStrategy.java:37)
+	at com.thoughtworks.xstream.XStream.marshal(XStream.java:1022)
+	at com.thoughtworks.xstream.XStream.marshal(XStream.java:1011)
+	at com.thoughtworks.xstream.XStream.toXML(XStream.java:984)
+	at com.thoughtworks.xstream.XStream.toXML(XStream.java:971)
+	at com.mirth.connect.donkey.util.xstream.XStreamSerializer.serialize(XStreamSerializer.java:84)
+	... 24 more
+INFO  2020-04-01 10:45:58,239 [Main Server Thread] com.mirth.connect.server.controllers.DonkeyEngineController: Property "server.startupdeploy" is disabled. Skipping initial deployment of channels...
+INFO  2020-04-01 10:45:58,244 [Main Server Thread] com.mirth.connect.server.Mirth: Mirth Connect null (Built on null) server successfully started.
+INFO  2020-04-01 10:45:58,244 [Main Server Thread] com.mirth.connect.server.Mirth: This product was developed by NextGen Healthcare (https://www.nextgen.com) and its contributors (c)2005-2020.
+INFO  2020-04-01 10:45:58,244 [Main Server Thread] com.mirth.connect.server.Mirth: Running Java HotSpot(TM) 64-Bit Server VM 1.8.0_241 on Linux (4.15.0-51-generic, amd64), derby, with charset UTF-8.
+INFO  2020-04-01 10:48:43,725 [Shutdown Hook Thread] com.mirth.connect.server.Mirth: shutting down mirth due to normal request
+ERROR 2020-04-01 10:48:50,206 [main] com.mirth.connect.server.ExtensionLoader: Error loading extension metadata.
+java.lang.IllegalArgumentException: Parameter 'directory' is not a directory
+	at org.apache.commons.io.FileUtils.validateListFilesParameters(FileUtils.java:478)
+	at org.apache.commons.io.FileUtils.listFiles(FileUtils.java:454)
+	at com.mirth.connect.server.ExtensionLoader.loadExtensions(ExtensionLoader.java:185)
+	at com.mirth.connect.server.ExtensionLoader.getPluginMetaData(ExtensionLoader.java:67)
+	at com.mirth.connect.server.ExtensionLoader.getControllerClass(ExtensionLoader.java:88)
+	at com.mirth.connect.server.ExtensionLoader.getControllerInstance(ExtensionLoader.java:125)
+	at com.mirth.connect.server.controllers.DonkeyEngineController.getInstance(DonkeyEngineController.java:154)
+	at com.mirth.connect.server.controllers.DefaultControllerFactory.createEngineController(DefaultControllerFactory.java:34)
+	at com.mirth.connect.server.Mirth.<init>(Mirth.java:79)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:93)
+ERROR 2020-04-01 10:48:50,750 [main] com.mirth.connect.server.controllers.DefaultConfigurationController: Failed to initialize configuration controller
+java.io.FileNotFoundException: version.properties (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.mirth.connect.server.util.ResourceUtil.getResourceStream(ResourceUtil.java:39)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.initialize(DefaultConfigurationController.java:223)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.create(DefaultConfigurationController.java:203)
+	at com.mirth.connect.server.controllers.DefaultControllerFactory.createConfigurationController(DefaultControllerFactory.java:30)
+	at com.mirth.connect.server.controllers.DonkeyEngineController.<init>(DonkeyEngineController.java:167)
+	at com.mirth.connect.server.controllers.DonkeyEngineController.getInstance(DonkeyEngineController.java:157)
+	at com.mirth.connect.server.controllers.DefaultControllerFactory.createEngineController(DefaultControllerFactory.java:34)
+	at com.mirth.connect.server.Mirth.<init>(Mirth.java:79)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:93)
+ERROR 2020-04-01 10:48:50,781 [Main Server Thread] com.mirth.connect.server.Mirth: could not load version.properties
+java.io.FileNotFoundException: version.properties (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.mirth.connect.server.util.ResourceUtil.getResourceStream(ResourceUtil.java:39)
+	at com.mirth.connect.server.Mirth.initResources(Mirth.java:185)
+	at com.mirth.connect.server.Mirth.run(Mirth.java:118)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:94)
+ERROR 2020-04-01 10:48:50,934 [Main Server Thread] com.mirth.connect.server.controllers.DefaultConfigurationController: Could not initialize security settings.
+java.io.FileNotFoundException: null/conf/mirth.properties (No such file or directory)
+	at java.io.FileOutputStream.open0(Native Method)
+	at java.io.FileOutputStream.open(FileOutputStream.java:270)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:213)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:162)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.saveMirthConfig(DefaultConfigurationController.java:1205)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.initializeSecuritySettings(DefaultConfigurationController.java:1118)
+	at com.mirth.connect.server.Mirth.startup(Mirth.java:208)
+	at com.mirth.connect.server.Mirth.run(Mirth.java:154)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:94)
+WARN  2020-04-01 10:48:53,107 [Main Server Thread] com.mirth.connect.server.Mirth: Could not start web server.
+java.io.FileNotFoundException: appdata/keystore.jks (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at com.mirth.connect.server.MirthWebServer.createSSLConnector(MirthWebServer.java:368)
+	at com.mirth.connect.server.MirthWebServer.<init>(MirthWebServer.java:150)
+	at com.mirth.connect.server.Mirth.startWebServer(Mirth.java:385)
+	at com.mirth.connect.server.Mirth.startup(Mirth.java:265)
+	at com.mirth.connect.server.Mirth.run(Mirth.java:154)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:94)
+WARN  2020-04-01 10:48:53,449 [Main Server Thread] com.mirth.connect.server.Mirth: Unable to initialize library resources.
+com.mirth.connect.donkey.util.xstream.SerializerException: com.mirth.connect.donkey.util.xstream.SerializerException: java.lang.NullPointerException
+	at com.mirth.connect.donkey.util.xstream.XStreamSerializer.serialize(XStreamSerializer.java:86)
+	at com.mirth.connect.model.converters.ObjectXMLSerializer.serialize(ObjectXMLSerializer.java:231)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.getResources(DefaultConfigurationController.java:986)
+	at com.mirth.connect.server.Mirth.startup(Mirth.java:282)
+	at com.mirth.connect.server.Mirth.run(Mirth.java:154)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:94)
+Caused by: com.mirth.connect.donkey.util.xstream.SerializerException: java.lang.NullPointerException
+	at com.mirth.connect.donkey.util.xstream.XStreamSerializer.serialize(XStreamSerializer.java:86)
+	at com.mirth.connect.model.converters.ObjectXMLSerializer.serialize(ObjectXMLSerializer.java:231)
+	at com.mirth.connect.model.converters.ResourcePropertiesConverter.marshal(ResourcePropertiesConverter.java:60)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convert(TreeMarshaller.java:70)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:58)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter.marshallField(AbstractReflectionConverter.java:250)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter$2.writeField(AbstractReflectionConverter.java:226)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter$2.<init>(AbstractReflectionConverter.java:189)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter.doMarshal(AbstractReflectionConverter.java:135)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter.marshal(AbstractReflectionConverter.java:83)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convert(TreeMarshaller.java:70)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:58)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:43)
+	at com.thoughtworks.xstream.core.TreeMarshaller.start(TreeMarshaller.java:82)
+	at com.thoughtworks.xstream.core.AbstractTreeMarshallingStrategy.marshal(AbstractTreeMarshallingStrategy.java:37)
+	at com.thoughtworks.xstream.XStream.marshal(XStream.java:1022)
+	at com.thoughtworks.xstream.XStream.marshal(XStream.java:1011)
+	at com.thoughtworks.xstream.XStream.toXML(XStream.java:984)
+	at com.thoughtworks.xstream.XStream.toXML(XStream.java:971)
+	at com.mirth.connect.donkey.util.xstream.XStreamSerializer.serialize(XStreamSerializer.java:84)
+	... 5 more
+Caused by: java.lang.NullPointerException
+	at com.thoughtworks.xstream.io.xml.PrettyPrintWriter.writeText(PrettyPrintWriter.java:235)
+	at com.thoughtworks.xstream.io.xml.PrettyPrintWriter.writeAttributeValue(PrettyPrintWriter.java:227)
+	at com.thoughtworks.xstream.io.xml.PrettyPrintWriter.addAttribute(PrettyPrintWriter.java:222)
+	at com.mirth.connect.model.converters.MigratableConverter.marshal(MigratableConverter.java:56)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convert(TreeMarshaller.java:70)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:58)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:43)
+	at com.thoughtworks.xstream.core.TreeMarshaller.start(TreeMarshaller.java:82)
+	at com.thoughtworks.xstream.core.AbstractTreeMarshallingStrategy.marshal(AbstractTreeMarshallingStrategy.java:37)
+	at com.thoughtworks.xstream.XStream.marshal(XStream.java:1022)
+	at com.thoughtworks.xstream.XStream.marshal(XStream.java:1011)
+	at com.thoughtworks.xstream.XStream.toXML(XStream.java:984)
+	at com.thoughtworks.xstream.XStream.toXML(XStream.java:971)
+	at com.mirth.connect.donkey.util.xstream.XStreamSerializer.serialize(XStreamSerializer.java:84)
+	... 24 more
+INFO  2020-04-01 10:48:53,659 [Main Server Thread] com.mirth.connect.server.controllers.DonkeyEngineController: Property "server.startupdeploy" is disabled. Skipping initial deployment of channels...
+INFO  2020-04-01 10:48:53,663 [Main Server Thread] com.mirth.connect.server.Mirth: Mirth Connect null (Built on null) server successfully started.
+INFO  2020-04-01 10:48:53,666 [Main Server Thread] com.mirth.connect.server.Mirth: This product was developed by NextGen Healthcare (https://www.nextgen.com) and its contributors (c)2005-2020.
+INFO  2020-04-01 10:48:53,666 [Main Server Thread] com.mirth.connect.server.Mirth: Running Java HotSpot(TM) 64-Bit Server VM 1.8.0_241 on Linux (4.15.0-51-generic, amd64), derby, with charset UTF-8.
+INFO  2020-04-01 10:50:27,760 [Shutdown Hook Thread] com.mirth.connect.server.Mirth: shutting down mirth due to normal request
+ERROR 2020-04-01 10:50:31,463 [main] com.mirth.connect.server.controllers.DefaultConfigurationController: Failed to initialize configuration controller
+java.io.FileNotFoundException: version.properties (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.mirth.connect.server.util.ResourceUtil.getResourceStream(ResourceUtil.java:39)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.initialize(DefaultConfigurationController.java:223)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.create(DefaultConfigurationController.java:203)
+	at com.mirth.connect.server.controllers.DefaultControllerFactory.createConfigurationController(DefaultControllerFactory.java:30)
+	at com.mirth.connect.server.controllers.DonkeyEngineController.<init>(DonkeyEngineController.java:167)
+	at com.mirth.connect.server.controllers.DonkeyEngineController.getInstance(DonkeyEngineController.java:157)
+	at com.mirth.connect.server.controllers.DefaultControllerFactory.createEngineController(DefaultControllerFactory.java:34)
+	at com.mirth.connect.server.Mirth.<init>(Mirth.java:79)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:93)
+ERROR 2020-04-01 10:50:31,494 [Main Server Thread] com.mirth.connect.server.Mirth: could not load version.properties
+java.io.FileNotFoundException: version.properties (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.mirth.connect.server.util.ResourceUtil.getResourceStream(ResourceUtil.java:39)
+	at com.mirth.connect.server.Mirth.initResources(Mirth.java:185)
+	at com.mirth.connect.server.Mirth.run(Mirth.java:118)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:94)
+ERROR 2020-04-01 10:50:31,650 [Main Server Thread] com.mirth.connect.server.controllers.DefaultConfigurationController: Could not initialize security settings.
+java.io.FileNotFoundException: null/conf/mirth.properties (No such file or directory)
+	at java.io.FileOutputStream.open0(Native Method)
+	at java.io.FileOutputStream.open(FileOutputStream.java:270)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:213)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:162)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.saveMirthConfig(DefaultConfigurationController.java:1205)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.initializeSecuritySettings(DefaultConfigurationController.java:1118)
+	at com.mirth.connect.server.Mirth.startup(Mirth.java:208)
+	at com.mirth.connect.server.Mirth.run(Mirth.java:154)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:94)
+WARN  2020-04-01 10:50:33,655 [Main Server Thread] com.mirth.connect.server.Mirth: Could not start web server.
+java.io.FileNotFoundException: appdata/keystore.jks (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at com.mirth.connect.server.MirthWebServer.createSSLConnector(MirthWebServer.java:368)
+	at com.mirth.connect.server.MirthWebServer.<init>(MirthWebServer.java:150)
+	at com.mirth.connect.server.Mirth.startWebServer(Mirth.java:385)
+	at com.mirth.connect.server.Mirth.startup(Mirth.java:265)
+	at com.mirth.connect.server.Mirth.run(Mirth.java:154)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:94)
+WARN  2020-04-01 10:50:33,963 [Main Server Thread] com.mirth.connect.server.Mirth: Unable to initialize library resources.
+com.mirth.connect.donkey.util.xstream.SerializerException: com.mirth.connect.donkey.util.xstream.SerializerException: java.lang.NullPointerException
+	at com.mirth.connect.donkey.util.xstream.XStreamSerializer.serialize(XStreamSerializer.java:86)
+	at com.mirth.connect.model.converters.ObjectXMLSerializer.serialize(ObjectXMLSerializer.java:231)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.getResources(DefaultConfigurationController.java:986)
+	at com.mirth.connect.server.Mirth.startup(Mirth.java:282)
+	at com.mirth.connect.server.Mirth.run(Mirth.java:154)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:94)
+Caused by: com.mirth.connect.donkey.util.xstream.SerializerException: java.lang.NullPointerException
+	at com.mirth.connect.donkey.util.xstream.XStreamSerializer.serialize(XStreamSerializer.java:86)
+	at com.mirth.connect.model.converters.ObjectXMLSerializer.serialize(ObjectXMLSerializer.java:231)
+	at com.mirth.connect.model.converters.ResourcePropertiesConverter.marshal(ResourcePropertiesConverter.java:60)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convert(TreeMarshaller.java:70)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:58)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter.marshallField(AbstractReflectionConverter.java:250)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter$2.writeField(AbstractReflectionConverter.java:226)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter$2.<init>(AbstractReflectionConverter.java:189)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter.doMarshal(AbstractReflectionConverter.java:135)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter.marshal(AbstractReflectionConverter.java:83)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convert(TreeMarshaller.java:70)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:58)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:43)
+	at com.thoughtworks.xstream.core.TreeMarshaller.start(TreeMarshaller.java:82)
+	at com.thoughtworks.xstream.core.AbstractTreeMarshallingStrategy.marshal(AbstractTreeMarshallingStrategy.java:37)
+	at com.thoughtworks.xstream.XStream.marshal(XStream.java:1022)
+	at com.thoughtworks.xstream.XStream.marshal(XStream.java:1011)
+	at com.thoughtworks.xstream.XStream.toXML(XStream.java:984)
+	at com.thoughtworks.xstream.XStream.toXML(XStream.java:971)
+	at com.mirth.connect.donkey.util.xstream.XStreamSerializer.serialize(XStreamSerializer.java:84)
+	... 5 more
+Caused by: java.lang.NullPointerException
+	at com.thoughtworks.xstream.io.xml.PrettyPrintWriter.writeText(PrettyPrintWriter.java:235)
+	at com.thoughtworks.xstream.io.xml.PrettyPrintWriter.writeAttributeValue(PrettyPrintWriter.java:227)
+	at com.thoughtworks.xstream.io.xml.PrettyPrintWriter.addAttribute(PrettyPrintWriter.java:222)
+	at com.mirth.connect.model.converters.MigratableConverter.marshal(MigratableConverter.java:56)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convert(TreeMarshaller.java:70)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:58)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:43)
+	at com.thoughtworks.xstream.core.TreeMarshaller.start(TreeMarshaller.java:82)
+	at com.thoughtworks.xstream.core.AbstractTreeMarshallingStrategy.marshal(AbstractTreeMarshallingStrategy.java:37)
+	at com.thoughtworks.xstream.XStream.marshal(XStream.java:1022)
+	at com.thoughtworks.xstream.XStream.marshal(XStream.java:1011)
+	at com.thoughtworks.xstream.XStream.toXML(XStream.java:984)
+	at com.thoughtworks.xstream.XStream.toXML(XStream.java:971)
+	at com.mirth.connect.donkey.util.xstream.XStreamSerializer.serialize(XStreamSerializer.java:84)
+	... 24 more
+INFO  2020-04-01 10:50:34,136 [Main Server Thread] com.mirth.connect.server.controllers.DonkeyEngineController: Property "server.startupdeploy" is disabled. Skipping initial deployment of channels...
+INFO  2020-04-01 10:50:34,136 [Main Server Thread] com.mirth.connect.server.Mirth: Mirth Connect null (Built on null) server successfully started.
+INFO  2020-04-01 10:50:34,137 [Main Server Thread] com.mirth.connect.server.Mirth: This product was developed by NextGen Healthcare (https://www.nextgen.com) and its contributors (c)2005-2020.
+INFO  2020-04-01 10:50:34,137 [Main Server Thread] com.mirth.connect.server.Mirth: Running Java HotSpot(TM) 64-Bit Server VM 1.8.0_241 on Linux (4.15.0-51-generic, amd64), derby, with charset UTF-8.
+INFO  2020-04-01 10:53:08,313 [Shutdown Hook Thread] com.mirth.connect.server.Mirth: shutting down mirth due to normal request
+ERROR 2020-04-01 10:53:12,383 [main] com.mirth.connect.server.controllers.DefaultConfigurationController: Failed to initialize configuration controller
+java.io.FileNotFoundException: version.properties (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.mirth.connect.server.util.ResourceUtil.getResourceStream(ResourceUtil.java:39)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.initialize(DefaultConfigurationController.java:223)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.create(DefaultConfigurationController.java:203)
+	at com.mirth.connect.server.controllers.DefaultControllerFactory.createConfigurationController(DefaultControllerFactory.java:30)
+	at com.mirth.connect.server.controllers.DonkeyEngineController.<init>(DonkeyEngineController.java:167)
+	at com.mirth.connect.server.controllers.DonkeyEngineController.getInstance(DonkeyEngineController.java:157)
+	at com.mirth.connect.server.controllers.DefaultControllerFactory.createEngineController(DefaultControllerFactory.java:34)
+	at com.mirth.connect.server.Mirth.<init>(Mirth.java:79)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:93)
+ERROR 2020-04-01 10:53:12,422 [Main Server Thread] com.mirth.connect.server.Mirth: could not load version.properties
+java.io.FileNotFoundException: version.properties (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.mirth.connect.server.util.ResourceUtil.getResourceStream(ResourceUtil.java:39)
+	at com.mirth.connect.server.Mirth.initResources(Mirth.java:185)
+	at com.mirth.connect.server.Mirth.run(Mirth.java:118)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:94)
+ERROR 2020-04-01 10:53:12,620 [Main Server Thread] com.mirth.connect.server.controllers.DefaultConfigurationController: Could not initialize security settings.
+java.io.FileNotFoundException: null/conf/mirth.properties (No such file or directory)
+	at java.io.FileOutputStream.open0(Native Method)
+	at java.io.FileOutputStream.open(FileOutputStream.java:270)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:213)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:162)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.saveMirthConfig(DefaultConfigurationController.java:1205)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.initializeSecuritySettings(DefaultConfigurationController.java:1118)
+	at com.mirth.connect.server.Mirth.startup(Mirth.java:208)
+	at com.mirth.connect.server.Mirth.run(Mirth.java:154)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:94)
+WARN  2020-04-01 10:53:14,596 [Main Server Thread] com.mirth.connect.server.Mirth: Could not start web server.
+java.io.FileNotFoundException: appdata/keystore.jks (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at com.mirth.connect.server.MirthWebServer.createSSLConnector(MirthWebServer.java:368)
+	at com.mirth.connect.server.MirthWebServer.<init>(MirthWebServer.java:150)
+	at com.mirth.connect.server.Mirth.startWebServer(Mirth.java:385)
+	at com.mirth.connect.server.Mirth.startup(Mirth.java:265)
+	at com.mirth.connect.server.Mirth.run(Mirth.java:154)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:94)
+WARN  2020-04-01 10:53:14,875 [Main Server Thread] com.mirth.connect.server.Mirth: Unable to initialize library resources.
+com.mirth.connect.donkey.util.xstream.SerializerException: com.mirth.connect.donkey.util.xstream.SerializerException: java.lang.NullPointerException
+	at com.mirth.connect.donkey.util.xstream.XStreamSerializer.serialize(XStreamSerializer.java:86)
+	at com.mirth.connect.model.converters.ObjectXMLSerializer.serialize(ObjectXMLSerializer.java:231)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.getResources(DefaultConfigurationController.java:986)
+	at com.mirth.connect.server.Mirth.startup(Mirth.java:282)
+	at com.mirth.connect.server.Mirth.run(Mirth.java:154)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:94)
+Caused by: com.mirth.connect.donkey.util.xstream.SerializerException: java.lang.NullPointerException
+	at com.mirth.connect.donkey.util.xstream.XStreamSerializer.serialize(XStreamSerializer.java:86)
+	at com.mirth.connect.model.converters.ObjectXMLSerializer.serialize(ObjectXMLSerializer.java:231)
+	at com.mirth.connect.model.converters.ResourcePropertiesConverter.marshal(ResourcePropertiesConverter.java:60)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convert(TreeMarshaller.java:70)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:58)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter.marshallField(AbstractReflectionConverter.java:250)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter$2.writeField(AbstractReflectionConverter.java:226)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter$2.<init>(AbstractReflectionConverter.java:189)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter.doMarshal(AbstractReflectionConverter.java:135)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter.marshal(AbstractReflectionConverter.java:83)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convert(TreeMarshaller.java:70)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:58)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:43)
+	at com.thoughtworks.xstream.core.TreeMarshaller.start(TreeMarshaller.java:82)
+	at com.thoughtworks.xstream.core.AbstractTreeMarshallingStrategy.marshal(AbstractTreeMarshallingStrategy.java:37)
+	at com.thoughtworks.xstream.XStream.marshal(XStream.java:1022)
+	at com.thoughtworks.xstream.XStream.marshal(XStream.java:1011)
+	at com.thoughtworks.xstream.XStream.toXML(XStream.java:984)
+	at com.thoughtworks.xstream.XStream.toXML(XStream.java:971)
+	at com.mirth.connect.donkey.util.xstream.XStreamSerializer.serialize(XStreamSerializer.java:84)
+	... 5 more
+Caused by: java.lang.NullPointerException
+	at com.thoughtworks.xstream.io.xml.PrettyPrintWriter.writeText(PrettyPrintWriter.java:235)
+	at com.thoughtworks.xstream.io.xml.PrettyPrintWriter.writeAttributeValue(PrettyPrintWriter.java:227)
+	at com.thoughtworks.xstream.io.xml.PrettyPrintWriter.addAttribute(PrettyPrintWriter.java:222)
+	at com.mirth.connect.model.converters.MigratableConverter.marshal(MigratableConverter.java:56)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convert(TreeMarshaller.java:70)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:58)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:43)
+	at com.thoughtworks.xstream.core.TreeMarshaller.start(TreeMarshaller.java:82)
+	at com.thoughtworks.xstream.core.AbstractTreeMarshallingStrategy.marshal(AbstractTreeMarshallingStrategy.java:37)
+	at com.thoughtworks.xstream.XStream.marshal(XStream.java:1022)
+	at com.thoughtworks.xstream.XStream.marshal(XStream.java:1011)
+	at com.thoughtworks.xstream.XStream.toXML(XStream.java:984)
+	at com.thoughtworks.xstream.XStream.toXML(XStream.java:971)
+	at com.mirth.connect.donkey.util.xstream.XStreamSerializer.serialize(XStreamSerializer.java:84)
+	... 24 more
+INFO  2020-04-01 10:53:15,059 [Main Server Thread] com.mirth.connect.server.controllers.DonkeyEngineController: Property "server.startupdeploy" is disabled. Skipping initial deployment of channels...
+INFO  2020-04-01 10:53:15,059 [Main Server Thread] com.mirth.connect.server.Mirth: Mirth Connect null (Built on null) server successfully started.
+INFO  2020-04-01 10:53:15,059 [Main Server Thread] com.mirth.connect.server.Mirth: This product was developed by NextGen Healthcare (https://www.nextgen.com) and its contributors (c)2005-2020.
+INFO  2020-04-01 10:53:15,059 [Main Server Thread] com.mirth.connect.server.Mirth: Running Java HotSpot(TM) 64-Bit Server VM 1.8.0_241 on Linux (4.15.0-51-generic, amd64), derby, with charset UTF-8.
+INFO  2020-04-01 10:56:24,766 [Shutdown Hook Thread] com.mirth.connect.server.Mirth: shutting down mirth due to normal request
+ERROR 2020-04-01 10:56:28,875 [main] com.mirth.connect.server.controllers.DefaultConfigurationController: Failed to initialize configuration controller
+java.io.FileNotFoundException: version.properties (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.mirth.connect.server.util.ResourceUtil.getResourceStream(ResourceUtil.java:39)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.initialize(DefaultConfigurationController.java:223)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.create(DefaultConfigurationController.java:203)
+	at com.mirth.connect.server.controllers.DefaultControllerFactory.createConfigurationController(DefaultControllerFactory.java:30)
+	at com.mirth.connect.server.controllers.DonkeyEngineController.<init>(DonkeyEngineController.java:167)
+	at com.mirth.connect.server.controllers.DonkeyEngineController.getInstance(DonkeyEngineController.java:157)
+	at com.mirth.connect.server.controllers.DefaultControllerFactory.createEngineController(DefaultControllerFactory.java:34)
+	at com.mirth.connect.server.Mirth.<init>(Mirth.java:79)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:93)
+ERROR 2020-04-01 10:56:28,918 [Main Server Thread] com.mirth.connect.server.Mirth: could not load version.properties
+java.io.FileNotFoundException: version.properties (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.mirth.connect.server.util.ResourceUtil.getResourceStream(ResourceUtil.java:39)
+	at com.mirth.connect.server.Mirth.initResources(Mirth.java:185)
+	at com.mirth.connect.server.Mirth.run(Mirth.java:118)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:94)
+ERROR 2020-04-01 10:56:29,166 [Main Server Thread] com.mirth.connect.server.controllers.DefaultConfigurationController: Could not initialize security settings.
+java.io.FileNotFoundException: null/conf/mirth.properties (No such file or directory)
+	at java.io.FileOutputStream.open0(Native Method)
+	at java.io.FileOutputStream.open(FileOutputStream.java:270)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:213)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:162)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.saveMirthConfig(DefaultConfigurationController.java:1205)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.initializeSecuritySettings(DefaultConfigurationController.java:1118)
+	at com.mirth.connect.server.Mirth.startup(Mirth.java:208)
+	at com.mirth.connect.server.Mirth.run(Mirth.java:154)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:94)
+WARN  2020-04-01 10:56:31,545 [Main Server Thread] com.mirth.connect.server.Mirth: Could not start web server.
+java.io.FileNotFoundException: appdata/keystore.jks (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at com.mirth.connect.server.MirthWebServer.createSSLConnector(MirthWebServer.java:368)
+	at com.mirth.connect.server.MirthWebServer.<init>(MirthWebServer.java:150)
+	at com.mirth.connect.server.Mirth.startWebServer(Mirth.java:385)
+	at com.mirth.connect.server.Mirth.startup(Mirth.java:265)
+	at com.mirth.connect.server.Mirth.run(Mirth.java:154)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:94)
+WARN  2020-04-01 10:56:31,884 [Main Server Thread] com.mirth.connect.server.Mirth: Unable to initialize library resources.
+com.mirth.connect.donkey.util.xstream.SerializerException: com.mirth.connect.donkey.util.xstream.SerializerException: java.lang.NullPointerException
+	at com.mirth.connect.donkey.util.xstream.XStreamSerializer.serialize(XStreamSerializer.java:86)
+	at com.mirth.connect.model.converters.ObjectXMLSerializer.serialize(ObjectXMLSerializer.java:231)
+	at com.mirth.connect.server.controllers.DefaultConfigurationController.getResources(DefaultConfigurationController.java:986)
+	at com.mirth.connect.server.Mirth.startup(Mirth.java:282)
+	at com.mirth.connect.server.Mirth.run(Mirth.java:154)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:94)
+Caused by: com.mirth.connect.donkey.util.xstream.SerializerException: java.lang.NullPointerException
+	at com.mirth.connect.donkey.util.xstream.XStreamSerializer.serialize(XStreamSerializer.java:86)
+	at com.mirth.connect.model.converters.ObjectXMLSerializer.serialize(ObjectXMLSerializer.java:231)
+	at com.mirth.connect.model.converters.ResourcePropertiesConverter.marshal(ResourcePropertiesConverter.java:60)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convert(TreeMarshaller.java:70)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:58)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter.marshallField(AbstractReflectionConverter.java:250)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter$2.writeField(AbstractReflectionConverter.java:226)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter$2.<init>(AbstractReflectionConverter.java:189)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter.doMarshal(AbstractReflectionConverter.java:135)
+	at com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter.marshal(AbstractReflectionConverter.java:83)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convert(TreeMarshaller.java:70)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:58)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:43)
+	at com.thoughtworks.xstream.core.TreeMarshaller.start(TreeMarshaller.java:82)
+	at com.thoughtworks.xstream.core.AbstractTreeMarshallingStrategy.marshal(AbstractTreeMarshallingStrategy.java:37)
+	at com.thoughtworks.xstream.XStream.marshal(XStream.java:1022)
+	at com.thoughtworks.xstream.XStream.marshal(XStream.java:1011)
+	at com.thoughtworks.xstream.XStream.toXML(XStream.java:984)
+	at com.thoughtworks.xstream.XStream.toXML(XStream.java:971)
+	at com.mirth.connect.donkey.util.xstream.XStreamSerializer.serialize(XStreamSerializer.java:84)
+	... 5 more
+Caused by: java.lang.NullPointerException
+	at com.thoughtworks.xstream.io.xml.PrettyPrintWriter.writeText(PrettyPrintWriter.java:235)
+	at com.thoughtworks.xstream.io.xml.PrettyPrintWriter.writeAttributeValue(PrettyPrintWriter.java:227)
+	at com.thoughtworks.xstream.io.xml.PrettyPrintWriter.addAttribute(PrettyPrintWriter.java:222)
+	at com.mirth.connect.model.converters.MigratableConverter.marshal(MigratableConverter.java:56)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convert(TreeMarshaller.java:70)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:58)
+	at com.thoughtworks.xstream.core.TreeMarshaller.convertAnother(TreeMarshaller.java:43)
+	at com.thoughtworks.xstream.core.TreeMarshaller.start(TreeMarshaller.java:82)
+	at com.thoughtworks.xstream.core.AbstractTreeMarshallingStrategy.marshal(AbstractTreeMarshallingStrategy.java:37)
+	at com.thoughtworks.xstream.XStream.marshal(XStream.java:1022)
+	at com.thoughtworks.xstream.XStream.marshal(XStream.java:1011)
+	at com.thoughtworks.xstream.XStream.toXML(XStream.java:984)
+	at com.thoughtworks.xstream.XStream.toXML(XStream.java:971)
+	at com.mirth.connect.donkey.util.xstream.XStreamSerializer.serialize(XStreamSerializer.java:84)
+	... 24 more
+INFO  2020-04-01 10:56:32,069 [Main Server Thread] com.mirth.connect.server.controllers.DonkeyEngineController: Property "server.startupdeploy" is disabled. Skipping initial deployment of channels...
+INFO  2020-04-01 10:56:32,069 [Main Server Thread] com.mirth.connect.server.Mirth: Mirth Connect null (Built on null) server successfully started.
+INFO  2020-04-01 10:56:32,069 [Main Server Thread] com.mirth.connect.server.Mirth: This product was developed by NextGen Healthcare (https://www.nextgen.com) and its contributors (c)2005-2020.
+INFO  2020-04-01 10:56:32,070 [Main Server Thread] com.mirth.connect.server.Mirth: Running Java HotSpot(TM) 64-Bit Server VM 1.8.0_241 on Linux (4.15.0-51-generic, amd64), derby, with charset UTF-8.
+INFO  2020-04-01 11:39:04,138 [Shutdown Hook Thread] com.mirth.connect.server.Mirth: shutting down mirth due to normal request
+ERROR 2020-04-01 11:40:45,898 [Main Server Thread] com.mirth.connect.server.Mirth: http.port port is already in use: 8080
+ERROR 2020-04-01 11:40:45,899 [Main Server Thread] com.mirth.connect.server.Mirth: https.port port is already in use: 8443
+ERROR 2020-04-01 11:41:37,483 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to update libraries: Plugin "Directory Resource" not found.
+ERROR 2020-04-01 11:41:37,484 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to load libraries: Plugin "Directory Resource" not found.
+ERROR 2020-04-01 11:41:37,485 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to load libraries: Plugin "Directory Resource" not found.
+INFO  2020-04-01 11:41:37,701 [Main Server Thread] com.mirth.connect.server.Mirth: Mirth Connect 3.8.1 (Built on December 13, 2019) server successfully started.
+INFO  2020-04-01 11:41:37,702 [Main Server Thread] com.mirth.connect.server.Mirth: This product was developed by NextGen Healthcare (https://www.nextgen.com) and its contributors (c)2005-2020.
+INFO  2020-04-01 11:41:37,702 [Main Server Thread] com.mirth.connect.server.Mirth: Running OpenJDK 64-Bit Server VM 1.8.0_232 on Linux (4.15.0-51-generic, amd64), derby, with charset UTF-8.
+INFO  2020-04-01 11:41:37,703 [Main Server Thread] com.mirth.connect.server.Mirth: Web server running at http://127.0.1.1:8080/ and https://127.0.1.1:8443/
+INFO  2020-04-01 12:53:32,769 [Shutdown Hook Thread] com.mirth.connect.server.Mirth: shutting down mirth due to normal request
+ERROR 2020-04-01 12:54:19,289 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to update libraries: Plugin "Directory Resource" not found.
+ERROR 2020-04-01 12:54:19,289 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to load libraries: Plugin "Directory Resource" not found.
+ERROR 2020-04-01 12:54:19,290 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to load libraries: Plugin "Directory Resource" not found.
+INFO  2020-04-01 12:54:19,488 [Main Server Thread] com.mirth.connect.server.Mirth: Mirth Connect 3.8.1 (Built on December 13, 2019) server successfully started.
+INFO  2020-04-01 12:54:19,488 [Main Server Thread] com.mirth.connect.server.Mirth: This product was developed by NextGen Healthcare (https://www.nextgen.com) and its contributors (c)2005-2020.
+INFO  2020-04-01 12:54:19,488 [Main Server Thread] com.mirth.connect.server.Mirth: Running OpenJDK 64-Bit Server VM 1.8.0_232 on Linux (4.15.0-51-generic, amd64), derby, with charset UTF-8.
+INFO  2020-04-01 12:54:19,490 [Main Server Thread] com.mirth.connect.server.Mirth: Web server running at http://127.0.1.1:8080/ and https://127.0.1.1:8443/
+INFO  2020-04-01 12:56:58,613 [Shutdown Hook Thread] com.mirth.connect.server.Mirth: shutting down mirth due to normal request
+ERROR 2020-04-01 12:58:28,866 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to update libraries: Plugin "Directory Resource" not found.
+ERROR 2020-04-01 12:58:28,867 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to load libraries: Plugin "Directory Resource" not found.
+ERROR 2020-04-01 12:58:28,867 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to load libraries: Plugin "Directory Resource" not found.
+INFO  2020-04-01 12:58:29,061 [Main Server Thread] com.mirth.connect.server.Mirth: Mirth Connect 3.8.1 (Built on December 13, 2019) server successfully started.
+INFO  2020-04-01 12:58:29,061 [Main Server Thread] com.mirth.connect.server.Mirth: This product was developed by NextGen Healthcare (https://www.nextgen.com) and its contributors (c)2005-2020.
+INFO  2020-04-01 12:58:29,061 [Main Server Thread] com.mirth.connect.server.Mirth: Running OpenJDK 64-Bit Server VM 1.8.0_232 on Linux (4.15.0-51-generic, amd64), derby, with charset UTF-8.
+INFO  2020-04-01 12:58:29,063 [Main Server Thread] com.mirth.connect.server.Mirth: Web server running at http://127.0.1.1:8080/ and https://127.0.1.1:8443/
+INFO  2020-04-01 13:57:51,964 [Shutdown Hook Thread] com.mirth.connect.server.Mirth: shutting down mirth due to normal request
+ERROR 2020-04-01 13:58:19,425 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to update libraries: Plugin "Directory Resource" not found.
+ERROR 2020-04-01 13:58:19,426 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to load libraries: Plugin "Directory Resource" not found.
+ERROR 2020-04-01 13:58:19,426 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to load libraries: Plugin "Directory Resource" not found.
+INFO  2020-04-01 13:58:19,616 [Main Server Thread] com.mirth.connect.server.Mirth: Mirth Connect 3.8.1 (Built on December 13, 2019) server successfully started.
+INFO  2020-04-01 13:58:19,616 [Main Server Thread] com.mirth.connect.server.Mirth: This product was developed by NextGen Healthcare (https://www.nextgen.com) and its contributors (c)2005-2020.
+INFO  2020-04-01 13:58:19,616 [Main Server Thread] com.mirth.connect.server.Mirth: Running OpenJDK 64-Bit Server VM 1.8.0_232 on Linux (4.15.0-51-generic, amd64), derby, with charset UTF-8.
+INFO  2020-04-01 13:58:19,618 [Main Server Thread] com.mirth.connect.server.Mirth: Web server running at http://127.0.1.1:8080/ and https://127.0.1.1:8443/
+INFO  2020-04-01 13:59:07,732 [Shutdown Hook Thread] com.mirth.connect.server.Mirth: shutting down mirth due to normal request
+ERROR 2020-04-01 14:02:36,303 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to update libraries: Plugin "Directory Resource" not found.
+ERROR 2020-04-01 14:02:36,304 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to load libraries: Plugin "Directory Resource" not found.
+ERROR 2020-04-01 14:02:36,304 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to load libraries: Plugin "Directory Resource" not found.
+INFO  2020-04-01 14:02:36,495 [Main Server Thread] com.mirth.connect.server.Mirth: Mirth Connect 3.8.1 (Built on December 13, 2019) server successfully started.
+INFO  2020-04-01 14:02:36,495 [Main Server Thread] com.mirth.connect.server.Mirth: This product was developed by NextGen Healthcare (https://www.nextgen.com) and its contributors (c)2005-2020.
+INFO  2020-04-01 14:02:36,495 [Main Server Thread] com.mirth.connect.server.Mirth: Running OpenJDK 64-Bit Server VM 1.8.0_232 on Linux (4.15.0-51-generic, amd64), derby, with charset UTF-8.
+INFO  2020-04-01 14:02:36,496 [Main Server Thread] com.mirth.connect.server.Mirth: Web server running at http://127.0.1.1:8080/ and https://127.0.1.1:8443/
+INFO  2020-04-01 14:09:31,853 [Shutdown Hook Thread] com.mirth.connect.server.Mirth: shutting down mirth due to normal request
+ERROR 2020-04-01 14:10:25,963 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to update libraries: Plugin "Directory Resource" not found.
+ERROR 2020-04-01 14:10:25,965 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to load libraries: Plugin "Directory Resource" not found.
+ERROR 2020-04-01 14:10:25,965 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to load libraries: Plugin "Directory Resource" not found.
+INFO  2020-04-01 14:10:26,149 [Main Server Thread] com.mirth.connect.server.Mirth: Mirth Connect 3.8.1 (Built on December 13, 2019) server successfully started.
+INFO  2020-04-01 14:10:26,149 [Main Server Thread] com.mirth.connect.server.Mirth: This product was developed by NextGen Healthcare (https://www.nextgen.com) and its contributors (c)2005-2020.
+INFO  2020-04-01 14:10:26,149 [Main Server Thread] com.mirth.connect.server.Mirth: Running OpenJDK 64-Bit Server VM 1.8.0_232 on Linux (4.15.0-51-generic, amd64), derby, with charset UTF-8.
+INFO  2020-04-01 14:10:26,150 [Main Server Thread] com.mirth.connect.server.Mirth: Web server running at http://127.0.1.1:8080/ and https://127.0.1.1:8443/
+INFO  2020-04-01 14:12:40,980 [Shutdown Hook Thread] com.mirth.connect.server.Mirth: shutting down mirth due to normal request
+INFO  2020-04-01 14:15:07,312 [Shutdown Hook Thread] com.mirth.connect.server.Mirth: shutting down mirth due to normal request
+ERROR 2020-04-01 14:15:07,345 [Shutdown Hook Thread] com.mirth.connect.server.Mirth: java.lang.RuntimeException: java.lang.NullPointerException
+ERROR 2020-04-01 14:15:07,346 [Shutdown Hook Thread] Server: Exception in thread "Shutdown Hook Thread" java.lang.RuntimeException: java.lang.NullPointerException
+ERROR 2020-04-01 14:15:07,347 [Shutdown Hook Thread] Server: 	at com.mirth.connect.server.util.SqlConfig.init(SqlConfig.java:117)
+ERROR 2020-04-01 14:15:07,348 [Shutdown Hook Thread] Server: 	at com.mirth.connect.server.util.SqlConfig.<init>(SqlConfig.java:71)
+ERROR 2020-04-01 14:15:07,348 [Shutdown Hook Thread] Server: 	at com.mirth.connect.server.util.SqlConfig.getInstance(SqlConfig.java:62)
+ERROR 2020-04-01 14:15:07,348 [Shutdown Hook Thread] Server: 	at com.mirth.connect.server.Mirth.shutdown(Mirth.java:338)
+ERROR 2020-04-01 14:15:07,349 [Shutdown Hook Thread] Server: 	at com.mirth.connect.server.Mirth$ShutdownHook.run(Mirth.java:441)
+ERROR 2020-04-01 14:15:07,349 [Shutdown Hook Thread] Server: Caused by: java.lang.NullPointerException
+ERROR 2020-04-01 14:15:07,349 [Shutdown Hook Thread] Server: 	at com.mirth.connect.server.util.SqlConfig.init(SqlConfig.java:101)
+ERROR 2020-04-01 14:15:07,349 [Shutdown Hook Thread] Server: 	... 4 more
+ERROR 2020-04-01 14:16:26,096 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to update libraries: Plugin "Directory Resource" not found.
+ERROR 2020-04-01 14:16:26,097 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to load libraries: Plugin "Directory Resource" not found.
+ERROR 2020-04-01 14:16:26,097 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to load libraries: Plugin "Directory Resource" not found.
+INFO  2020-04-01 14:16:26,287 [Main Server Thread] com.mirth.connect.server.controllers.DonkeyEngineController: Property "server.startupdeploy" is disabled. Skipping initial deployment of channels...
+INFO  2020-04-01 14:16:26,287 [Main Server Thread] com.mirth.connect.server.Mirth: Mirth Connect 3.8.1 (Built on December 13, 2019) server successfully started.
+INFO  2020-04-01 14:16:26,287 [Main Server Thread] com.mirth.connect.server.Mirth: This product was developed by NextGen Healthcare (https://www.nextgen.com) and its contributors (c)2005-2020.
+INFO  2020-04-01 14:16:26,288 [Main Server Thread] com.mirth.connect.server.Mirth: Running OpenJDK 64-Bit Server VM 1.8.0_232 on Linux (4.15.0-51-generic, amd64), derby, with charset UTF-8.
+INFO  2020-04-01 14:16:26,289 [Main Server Thread] com.mirth.connect.server.Mirth: Web server running at http://127.0.1.1:8080/ and https://127.0.1.1:8443/
+INFO  2020-04-01 15:06:13,959 [Shutdown Hook Thread] com.mirth.connect.server.Mirth: shutting down mirth due to normal request
+ERROR 2020-04-01 15:16:07,758 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to update libraries: Plugin "Directory Resource" not found.
+ERROR 2020-04-01 15:16:07,760 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to load libraries: Plugin "Directory Resource" not found.
+ERROR 2020-04-01 15:16:07,760 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to load libraries: Plugin "Directory Resource" not found.
+INFO  2020-04-01 15:16:07,797 [Shutdown Hook Thread] com.mirth.connect.server.Mirth: shutting down mirth due to normal request
+ERROR 2020-04-01 15:16:34,352 [main] com.mirth.connect.server.extprops.ExtensionStatuses: Unable to find appdata directory: appdata
+ERROR 2020-04-01 15:17:06,709 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to update libraries: Plugin "Directory Resource" not found.
+ERROR 2020-04-01 15:17:06,709 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to load libraries: Plugin "Directory Resource" not found.
+ERROR 2020-04-01 15:17:06,710 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to load libraries: Plugin "Directory Resource" not found.
+INFO  2020-04-01 15:17:06,927 [Main Server Thread] com.mirth.connect.server.Mirth: Mirth Connect 3.8.1 (Built on December 13, 2019) server successfully started.
+INFO  2020-04-01 15:17:06,927 [Main Server Thread] com.mirth.connect.server.Mirth: This product was developed by NextGen Healthcare (https://www.nextgen.com) and its contributors (c)2005-2020.
+INFO  2020-04-01 15:17:06,927 [Main Server Thread] com.mirth.connect.server.Mirth: Running Java HotSpot(TM) 64-Bit Server VM 1.8.0_241 on Linux (4.15.0-51-generic, amd64), derby, with charset UTF-8.
+INFO  2020-04-01 15:17:06,929 [Main Server Thread] com.mirth.connect.server.Mirth: Web server running at http://127.0.1.1:8080/ and https://127.0.1.1:8443/
+INFO  2020-04-01 15:20:09,491 [Shutdown Hook Thread] com.mirth.connect.server.Mirth: shutting down mirth due to normal request
+ERROR 2020-04-01 15:20:47,805 [main] com.mirth.connect.server.extprops.ExtensionStatuses: Unable to find appdata directory: appdata
+ERROR 2020-04-01 15:20:58,506 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to update libraries: Plugin "Directory Resource" not found.
+ERROR 2020-04-01 15:20:58,506 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to load libraries: Plugin "Directory Resource" not found.
+ERROR 2020-04-01 15:20:58,507 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to load libraries: Plugin "Directory Resource" not found.
+INFO  2020-04-01 15:20:58,671 [Main Server Thread] com.mirth.connect.server.Mirth: Mirth Connect 3.8.1 (Built on December 13, 2019) server successfully started.
+INFO  2020-04-01 15:20:58,671 [Main Server Thread] com.mirth.connect.server.Mirth: This product was developed by NextGen Healthcare (https://www.nextgen.com) and its contributors (c)2005-2020.
+INFO  2020-04-01 15:20:58,671 [Main Server Thread] com.mirth.connect.server.Mirth: Running Java HotSpot(TM) 64-Bit Server VM 1.8.0_241 on Linux (4.15.0-51-generic, amd64), derby, with charset UTF-8.
+INFO  2020-04-01 15:20:58,673 [Main Server Thread] com.mirth.connect.server.Mirth: Web server running at http://127.0.1.1:8080/ and https://127.0.1.1:8443/
+INFO  2020-04-01 15:21:42,473 [Shutdown Hook Thread] com.mirth.connect.server.Mirth: shutting down mirth due to normal request
+ERROR 2020-04-01 15:21:47,438 [main] com.mirth.connect.server.ExtensionLoader: Error loading extension metadata.
+java.lang.IllegalArgumentException: Parameter 'directory' is not a directory
+	at org.apache.commons.io.FileUtils.validateListFilesParameters(FileUtils.java:478)
+	at org.apache.commons.io.FileUtils.listFiles(FileUtils.java:454)
+	at com.mirth.connect.server.ExtensionLoader.loadExtensions(ExtensionLoader.java:185)
+	at com.mirth.connect.server.ExtensionLoader.getPluginMetaData(ExtensionLoader.java:67)
+	at com.mirth.connect.server.ExtensionLoader.getControllerClass(ExtensionLoader.java:88)
+	at com.mirth.connect.server.ExtensionLoader.getControllerInstance(ExtensionLoader.java:125)
+	at com.mirth.connect.server.controllers.DonkeyEngineController.getInstance(DonkeyEngineController.java:154)
+	at com.mirth.connect.server.controllers.DefaultControllerFactory.createEngineController(DefaultControllerFactory.java:34)
+	at com.mirth.connect.server.Mirth.<init>(Mirth.java:79)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:93)
+ERROR 2020-04-01 15:21:54,205 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to update libraries: Plugin "Directory Resource" not found.
+ERROR 2020-04-01 15:21:54,205 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to load libraries: Plugin "Directory Resource" not found.
+ERROR 2020-04-01 15:21:54,205 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to load libraries: Plugin "Directory Resource" not found.
+INFO  2020-04-01 15:21:54,396 [Main Server Thread] com.mirth.connect.server.Mirth: Mirth Connect 3.8.1 (Built on December 13, 2019) server successfully started.
+INFO  2020-04-01 15:21:54,396 [Main Server Thread] com.mirth.connect.server.Mirth: This product was developed by NextGen Healthcare (https://www.nextgen.com) and its contributors (c)2005-2020.
+INFO  2020-04-01 15:21:54,396 [Main Server Thread] com.mirth.connect.server.Mirth: Running Java HotSpot(TM) 64-Bit Server VM 1.8.0_241 on Linux (4.15.0-51-generic, amd64), derby, with charset UTF-8.
+INFO  2020-04-01 15:21:54,397 [Main Server Thread] com.mirth.connect.server.Mirth: Web server running at http://127.0.1.1:8080/ and https://127.0.1.1:8443/
+INFO  2020-04-01 15:22:20,050 [Shutdown Hook Thread] com.mirth.connect.server.Mirth: shutting down mirth due to normal request
+ERROR 2020-04-01 15:22:24,369 [main] com.mirth.connect.server.ExtensionLoader: Error loading extension metadata.
+java.lang.IllegalArgumentException: Parameter 'directory' is not a directory
+	at org.apache.commons.io.FileUtils.validateListFilesParameters(FileUtils.java:478)
+	at org.apache.commons.io.FileUtils.listFiles(FileUtils.java:454)
+	at com.mirth.connect.server.ExtensionLoader.loadExtensions(ExtensionLoader.java:185)
+	at com.mirth.connect.server.ExtensionLoader.getPluginMetaData(ExtensionLoader.java:67)
+	at com.mirth.connect.server.ExtensionLoader.getControllerClass(ExtensionLoader.java:88)
+	at com.mirth.connect.server.ExtensionLoader.getControllerInstance(ExtensionLoader.java:125)
+	at com.mirth.connect.server.controllers.DonkeyEngineController.getInstance(DonkeyEngineController.java:154)
+	at com.mirth.connect.server.controllers.DefaultControllerFactory.createEngineController(DefaultControllerFactory.java:34)
+	at com.mirth.connect.server.Mirth.<init>(Mirth.java:79)
+	at com.mirth.connect.server.Mirth.main(Mirth.java:93)
+ERROR 2020-04-01 15:22:32,485 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to update libraries: Plugin "Directory Resource" not found.
+ERROR 2020-04-01 15:22:32,486 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to load libraries: Plugin "Directory Resource" not found.
+ERROR 2020-04-01 15:22:32,486 [Main Server Thread] com.mirth.connect.server.controllers.DefaultContextFactoryController: Unable to load libraries: Plugin "Directory Resource" not found.
+INFO  2020-04-01 15:22:32,702 [Main Server Thread] com.mirth.connect.server.Mirth: Mirth Connect 3.8.1 (Built on December 13, 2019) server successfully started.
+INFO  2020-04-01 15:22:32,702 [Main Server Thread] com.mirth.connect.server.Mirth: This product was developed by NextGen Healthcare (https://www.nextgen.com) and its contributors (c)2005-2020.
+INFO  2020-04-01 15:22:32,702 [Main Server Thread] com.mirth.connect.server.Mirth: Running Java HotSpot(TM) 64-Bit Server VM 1.8.0_241 on Linux (4.15.0-51-generic, amd64), derby, with charset UTF-8.
+INFO  2020-04-01 15:22:32,704 [Main Server Thread] com.mirth.connect.server.Mirth: Web server running at http://127.0.1.1:8080/ and https://127.0.1.1:8443/
+INFO  2020-04-01 15:23:02,010 [Shutdown Hook Thread] com.mirth.connect.server.Mirth: shutting down mirth due to normal request

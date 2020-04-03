@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ccd1f7b5-e6d7-493c-87fa-766a26c7f2d0" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="1ZvSDOE4j6Upyw5tdde1T5JyOnX" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/server/mirth-build.xml" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server/conf" />
+      <recent name="$PROJECT_DIR$/server" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Client">
+    <configuration name="Client" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.mirth.connect.client.ui.Mirth" />
+      <module name="Client" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Server" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.mirth.connect.server.Mirth" />
+      <module name="Server" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/server" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Server" />
+      <item itemvalue="Application.Client" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ccd1f7b5-e6d7-493c-87fa-766a26c7f2d0" name="Default Changelist" comment="" />
+      <created>1585717953249</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585717953249</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="138" y="25" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585841805070">
+      <screen x="0" y="25" width="1360" height="638" />
+    </state>
+    <state x="138" y="25" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1360.638@0.25.1360.638" timestamp="1585841805070" />
+    <state x="412" y="130" width="527" height="422" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1585721525878">
+      <screen x="0" y="25" width="1360" height="638" />
+    </state>
+    <state x="412" y="130" width="527" height="422" key="#com.intellij.ide.util.TreeClassChooserDialog/0.25.1360.638@0.25.1360.638" timestamp="1585721525878" />
+    <state x="413" y="94" width="526" height="496" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1585818013587">
+      <screen x="0" y="25" width="1360" height="638" />
+    </state>
+    <state x="413" y="94" width="526" height="496" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1360.638@0.25.1360.638" timestamp="1585818013587" />
+    <state x="438" y="90" width="659" height="509" key="#xdebugger.evaluate" timestamp="1585737770872">
+      <screen x="0" y="25" width="1360" height="638" />
+    </state>
+    <state x="438" y="90" width="659" height="509" key="#xdebugger.evaluate/0.25.1360.638@0.25.1360.638" timestamp="1585737770872" />
+    <state width="484" height="457" key="DebuggerActiveHint" timestamp="1585735326810">
+      <screen x="0" y="25" width="1360" height="638" />
+    </state>
+    <state width="484" height="457" key="DebuggerActiveHint/0.25.1360.638@0.25.1360.638" timestamp="1585735326810" />
+    <state x="433" y="59" width="478" height="560" key="DetectedRootsChooserDialog" timestamp="1585738115396">
+      <screen x="0" y="25" width="1360" height="638" />
+    </state>
+    <state x="433" y="59" width="478" height="560" key="DetectedRootsChooserDialog/0.25.1360.638@0.25.1360.638" timestamp="1585738115396" />
+    <state x="459" y="99" width="426" height="479" key="FileChooserDialogImpl" timestamp="1585821348315">
+      <screen x="0" y="25" width="1360" height="638" />
+    </state>
+    <state x="459" y="99" width="426" height="479" key="FileChooserDialogImpl/0.25.1360.638@0.25.1360.638" timestamp="1585821348315" />
+    <state width="1314" height="422" key="GridCell.Tab.0.bottom" timestamp="1585884670565">
+      <screen x="0" y="25" width="1360" height="638" />
+    </state>
+    <state width="1314" height="422" key="GridCell.Tab.0.bottom/0.25.1360.638@0.25.1360.638" timestamp="1585884670565" />
+    <state width="1314" height="422" key="GridCell.Tab.0.center" timestamp="1585884670564">
+      <screen x="0" y="25" width="1360" height="638" />
+    </state>
+    <state width="1314" height="422" key="GridCell.Tab.0.center/0.25.1360.638@0.25.1360.638" timestamp="1585884670564" />
+    <state width="1314" height="422" key="GridCell.Tab.0.left" timestamp="1585884670563">
+      <screen x="0" y="25" width="1360" height="638" />
+    </state>
+    <state width="1314" height="422" key="GridCell.Tab.0.left/0.25.1360.638@0.25.1360.638" timestamp="1585884670563" />
+    <state width="1314" height="422" key="GridCell.Tab.0.right" timestamp="1585884670564">
+      <screen x="0" y="25" width="1360" height="638" />
+    </state>
+    <state width="1314" height="422" key="GridCell.Tab.0.right/0.25.1360.638@0.25.1360.638" timestamp="1585884670564" />
+    <state width="1314" height="302" key="GridCell.Tab.1.bottom" timestamp="1585739100190">
+      <screen x="0" y="25" width="1360" height="638" />
+    </state>
+    <state width="1314" height="302" key="GridCell.Tab.1.bottom/0.25.1360.638@0.25.1360.638" timestamp="1585739100190" />
+    <state width="1314" height="302" key="GridCell.Tab.1.center" timestamp="1585739100188">
+      <screen x="0" y="25" width="1360" height="638" />
+    </state>
+    <state width="1314" height="302" key="GridCell.Tab.1.center/0.25.1360.638@0.25.1360.638" timestamp="1585739100188" />
+    <state width="1314" height="302" key="GridCell.Tab.1.left" timestamp="1585739100186">
+      <screen x="0" y="25" width="1360" height="638" />
+    </state>
+    <state width="1314" height="302" key="GridCell.Tab.1.left/0.25.1360.638@0.25.1360.638" timestamp="1585739100186" />
+    <state width="1314" height="302" key="GridCell.Tab.1.right" timestamp="1585739100189">
+      <screen x="0" y="25" width="1360" height="638" />
+    </state>
+    <state width="1314" height="302" key="GridCell.Tab.1.right/0.25.1360.638@0.25.1360.638" timestamp="1585739100189" />
+    <state x="263" y="82" width="826" height="520" key="IDE.errors.dialog" timestamp="1585721431698">
+      <screen x="0" y="25" width="1360" height="638" />
+    </state>
+    <state x="263" y="82" width="826" height="520" key="IDE.errors.dialog/0.25.1360.638@0.25.1360.638" timestamp="1585721431698" />
+    <state x="163" y="25" width="1026" height="638" key="SettingsEditor" timestamp="1585884507202">
+      <screen x="0" y="25" width="1360" height="638" />
+    </state>
+    <state x="163" y="25" width="1026" height="638" key="SettingsEditor/0.25.1360.638@0.25.1360.638" timestamp="1585884507202" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1585883853928">
+      <screen x="0" y="25" width="1360" height="638" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/0.25.1360.638@0.25.1360.638" timestamp="1585883853928" />
+    <state width="681" height="319" key="XDebugger.FullValuePopup" timestamp="1585734031816">
+      <screen x="0" y="25" width="1360" height="638" />
+    </state>
+    <state width="681" height="319" key="XDebugger.FullValuePopup/0.25.1360.638@0.25.1360.638" timestamp="1585734031816" />
+    <state x="99" y="125" width="1162" height="439" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1585885367770">
+      <screen x="0" y="25" width="1360" height="638" />
+    </state>
+    <state x="99" y="125" width="1162" height="439" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1360.638@0.25.1360.638" timestamp="1585885367770" />
+    <state x="373" y="172" key="com.intellij.ide.util.TipDialog" timestamp="1585883293124">
+      <screen x="0" y="25" width="1360" height="638" />
+    </state>
+    <state x="373" y="172" key="com.intellij.ide.util.TipDialog/0.25.1360.638@0.25.1360.638" timestamp="1585883293124" />
+    <state x="209" y="74" width="934" height="536" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1585734772305">
+      <screen x="0" y="25" width="1360" height="638" />
+    </state>
+    <state x="209" y="74" width="934" height="536" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.25.1360.638@0.25.1360.638" timestamp="1585734772305" />
+    <state x="297" y="62" width="766" height="564" key="find.popup" timestamp="1585884549438">
+      <screen x="0" y="25" width="1360" height="638" />
+    </state>
+    <state x="297" y="62" width="766" height="564" key="find.popup/0.25.1360.638@0.25.1360.638" timestamp="1585884549438" />
+    <state x="343" y="25" width="672" height="636" key="search.everywhere.popup" timestamp="1585883958230">
+      <screen x="0" y="25" width="1360" height="638" />
+    </state>
+    <state x="343" y="25" width="672" height="636" key="search.everywhere.popup/0.25.1360.638@0.25.1360.638" timestamp="1585883958230" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/server/lib/commons/commons-io-2.3.jar!/org/apache/commons/io/filefilter/AndFileFilter.class</url>
+          <line>32</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/server/src/com/mirth/connect/server/ExtensionLoader.java</url>
+          <line>186</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/server/lib/commons/commons-io-2.3.jar!/org/apache/commons/io/filefilter/AndFileFilter.class</url>
+          <line>35</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/server/lib/commons/commons-io-2.3.jar!/org/apache/commons/io/FileUtils.class</url>
+          <line>209</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/server/lib/commons/commons-io-2.3.jar!/org/apache/commons/io/FileUtils.class</url>
+          <line>218</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/server/lib/commons/commons-io-2.3.jar!/org/apache/commons/io/FileUtils.class</url>
+          <line>187</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar:///opt/jdk1.8.0_241/src.zip!/java/io/File.java</url>
+          <line>1207</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/server/src/com/mirth/connect/server/ExtensionLoader.java</url>
+          <line>229</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/server/src/com/mirth/connect/server/ExtensionLoader.java</url>
+          <line>228</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/server/src/com/mirth/connect/server/ExtensionLoader.java</url>
+          <line>184</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
