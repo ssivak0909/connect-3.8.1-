@@ -16,7 +16,22 @@ import org.apache.commons.lang3.StringUtils;
 public class TcpUtil {
 
     public static final String DEFAULT_LLP_START_BYTES = "0B"; // <VT>
-    public static final String DEFAULT_LLP_END_BYTES = "1C0D"; // <FS><CR>
+    public static final String DEFAULT_LLP_END_BYTES = "1C0D"; // <FS><CR>public static final String DEFAULT_ENQ = "005";
+    public static final String DEFAULT_STX = "002";
+    public static final String DEFAULT_MAX_FRAME_CONTENT_LEN = "240";
+    public static final String DEFAULT_ETB = "017";
+    public static final String DEFAULT_ETX = "003";
+    public static final String DEFAULT_CHECKSUM_BYTE_LEN = "2";
+    public static final String DEFAULT_CR = "0D";
+    public static final String DEFAULT_LF = "0A";
+    public static final String DEFAULT_EOT = "004";
+    public static final String DEFAULT_ACK = "006";
+    public static final String DEFAULT_NAK = "025";
+    public static final String DEFAULT_MOR = ">";
+    public static final String DEFAULT_FS = "034";
+    public static final String DEFAULT_GS = "035";
+    public static final String DEFAULT_RS = "036";
+    public static final String DEFAULT_SFS = "027";
 
     public static boolean isValidHexString(String str) {
         return str.matches("^[0-9A-F]*$");

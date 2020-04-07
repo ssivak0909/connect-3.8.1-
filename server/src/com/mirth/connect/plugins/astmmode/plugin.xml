@@ -1,0 +1,17 @@
+<pluginMetaData path="astmmode">
+	<name>Transmission Mode - ASTM</name>
+	<author>NextGen Healthcare</author>
+	<pluginVersion>@mirthversion</pluginVersion>
+	<mirthVersion>3.8.1</mirthVersion>
+	<url>http://www.nextgen.com</url>
+	<description>This plugin provides an ASTM transmission mode for socket/serial connectors.</description>
+	<serverClasses>
+		<string>com.mirth.connect.plugins.astmmode.ASTMModeProvider</string>
+	</serverClasses>
+	<clientClasses>
+		<string>com.mirth.connect.plugins.astmmode.ASTMModePlugin</string>
+	</clientClasses>
+	<library type="CLIENT" path="astmmode-client.jar" />
+	<library type="SERVER" path="astmmode-server.jar" />
+	<library type="SHARED" path="astmmode-shared.jar" />
+</pluginMetaData>

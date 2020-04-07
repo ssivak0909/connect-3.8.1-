@@ -35,6 +35,7 @@
 		<property name="connectors.js" value="${extensions}/js" />
 		<property name="connectors.ws" value="${extensions}/ws" />
 		<property name="connectors.vm" value="${extensions}/vm" />
+		<property name="connectors.astm" value="${extensions}/astm" />
 
 		<!-- datatypes -->
 		<property name="plugins.datatype-delimited" value="${extensions}/datatype-delimited" />
@@ -61,7 +62,6 @@
 		<property name="plugins.datapruner" value="${extensions}/datapruner" />
 		<property name="plugins.globalmapviewer" value="${extensions}/globalmapviewer" />
 		<property name="plugins.mllpmode" value="${extensions}/mllpmode" />
-		<property name="plugins.astmmode" value="${extensions}/astmmode" />
 		<property name="plugins.pdfviewer" value="${extensions}/pdfviewer" />
 		<property name="plugins.textviewer" value="${extensions}/textviewer" />
 		<property name="plugins.rulebuilder" value="${extensions}/rulebuilder" />
@@ -82,11 +82,11 @@
 		<delete dir="${docs.javadocs}" />
 	</target>
 
-	<target name="compile" depends="clean, init, create-javadocs">
+	<target name="compile" depends="init">
 		<!-- compile the source -->
-		<mkdir dir="${classes}" />
+		<!--<mkdir dir="${classes}" />-->
 
-		<javac srcdir="${src}" destdir="${classes}" debug="on" includeAntRuntime="false">
+		<javac srcdir="${src}/com/mirth/connect/connectors/astm" destdir="${classes}" debug="on" includeAntRuntime="false">
 			<classpath refid="classpath" />
 			<!-- Uncomment the following and add additional dashes in front of the arguments to allow Java 9+
 				<compilerarg value="-add-modules" />
@@ -132,300 +132,27 @@
 	</target>
 
 	<target name="create-connectors" depends="create-client-core">
-
-		<!-- connectors.dicom -->
-		<mkdir dir="${connectors.dicom}" />
-		<copy todir="${connectors.dicom}">
-			<fileset dir="${src}/com/mirth/connect/connectors/dimse">
+		<!-- connectors.astm -->
+		<mkdir dir="${connectors.astm}" />
+		<copy todir="${connectors.astm}">
+			<fileset dir="${src}/com/mirth/connect/connectors/astm">
 				<include name="*.xml" />
 			</fileset>
 		</copy>
-		<copy todir="${connectors.dicom}/lib" failonerror="false">
-			<fileset dir="${lib.extensions}/dimse" />
+		<copy todir="${connectors.astm}/lib" failonerror="false">
+			<fileset dir="${lib.extensions}/astm" />
 		</copy>
-		<jar destfile="${connectors.dicom}/dicom-shared.jar" basedir="${classes}">
-			<include name="com/mirth/connect/connectors/dimse/DICOMReceiverProperties.class" />
-			<include name="com/mirth/connect/connectors/dimse/DICOMDispatcherProperties.class" />
+		<jar destfile="${connectors.astm}/astm-shared.jar" basedir="${classes}">
+			<include name="com/mirth/connect/connectors/astm/ASTMReceiverProperties.class" />
+			<include name="com/mirth/connect/connectors/astm/ASTMDispatcherProperties.class" />
 		</jar>
-		<jar destfile="${connectors.dicom}/dicom-server.jar">
+		<jar destfile="${connectors.astm}/astm-server.jar">
 			<fileset dir="${classes}">
-				<include name="com/mirth/connect/connectors/dimse/**" />
-				<include name="org/dcm4che2/**" />
-				<exclude name="com/mirth/connect/connectors/dimse/DICOMReceiverProperties.class" />
-				<exclude name="com/mirth/connect/connectors/dimse/DICOMDispatcherProperties.class" />
+				<include name="com/mirth/connect/connectors/astm/**" />
+				<exclude name="com/mirth/connect/connectors/astm/ASTMReceiverProperties.class" />
+				<exclude name="com/mirth/connect/connectors/astm/ASTMDispatcherProperties.class" />
 			</fileset>
 		</jar>
-
-		<!-- connectors.doc -->
-		<mkdir dir="${connectors.doc}" />
-		<copy todir="${connectors.doc}">
-			<fileset dir="${src}/com/mirth/connect/connectors/doc">
-				<include name="*.xml" />
-			</fileset>
-		</copy>
-		<copy todir="${connectors.doc}/lib" failonerror="false">
-			<fileset dir="${lib.extensions}/doc" />
-		</copy>
-		<jar destfile="${connectors.doc}/doc-shared.jar" basedir="${classes}">
-			<include name="com/mirth/connect/connectors/doc/DocumentDispatcherProperties.class" />
-			<include name="com/mirth/connect/connectors/doc/DocumentConnectorServletInterface.class" />
-			<include name="com/mirth/connect/connectors/doc/PageSize.class" />
-			<include name="com/mirth/connect/connectors/doc/Unit.class" />
-		</jar>
-		<jar destfile="${connectors.doc}/doc-server.jar">
-			<fileset dir="${classes}">
-				<include name="com/mirth/connect/connectors/doc/**" />
-				<exclude name="com/mirth/connect/connectors/doc/DocumentDispatcherProperties.class" />
-				<exclude name="com/mirth/connect/connectors/doc/DocumentConnectorServletInterface.class" />
-				<exclude name="com/mirth/connect/connectors/doc/PageSize.class" />
-				<exclude name="com/mirth/connect/connectors/doc/Unit.class" />
-			</fileset>
-		</jar>
-
-		<!-- connectors.file -->
-		<mkdir dir="${connectors.file}" />
-		<copy todir="${connectors.file}">
-			<fileset dir="${src}/com/mirth/connect/connectors/file">
-				<include name="*.xml" />
-			</fileset>
-		</copy>
-		<copy todir="${connectors.file}/lib" failonerror="false">
-			<fileset dir="${lib.extensions}/file" />
-		</copy>
-		<jar destfile="${connectors.file}/file-shared.jar" basedir="${classes}">
-			<include name="com/mirth/connect/connectors/file/SchemeProperties.class" />
-			<include name="com/mirth/connect/connectors/file/FTPSchemeProperties.class" />
-			<include name="com/mirth/connect/connectors/file/SftpSchemeProperties.class" />
-			<include name="com/mirth/connect/connectors/file/S3SchemeProperties.class" />
-			<include name="com/mirth/connect/connectors/file/FileReceiverProperties.class" />
-			<include name="com/mirth/connect/connectors/file/FileDispatcherProperties.class" />
-			<include name="com/mirth/connect/connectors/file/FileScheme.class" />
-			<include name="com/mirth/connect/connectors/file/FileAction.class" />
-			<include name="com/mirth/connect/connectors/file/FileConnectorServletInterface.class" />
-		</jar>
-		<jar destfile="${connectors.file}/file-server.jar">
-			<fileset dir="${classes}">
-				<include name="com/mirth/connect/connectors/file/**" />
-				<exclude name="com/mirth/connect/connectors/file/SchemeProperties.class" />
-				<exclude name="com/mirth/connect/connectors/file/FTPSchemeProperties.class" />
-				<exclude name="com/mirth/connect/connectors/file/SftpSchemeProperties.class" />
-				<exclude name="com/mirth/connect/connectors/file/S3SchemeProperties.class" />
-				<exclude name="com/mirth/connect/connectors/file/FileReceiverProperties.class" />
-				<exclude name="com/mirth/connect/connectors/file/FileDispatcherProperties.class" />
-				<exclude name="com/mirth/connect/connectors/file/FileScheme.class" />
-				<exclude name="com/mirth/connect/connectors/file/FileAction.class" />
-				<exclude name="com/mirth/connect/connectors/file/FileConnectorServletInterface.class" />
-			</fileset>
-		</jar>
-
-		<!-- connectors.http -->
-		<mkdir dir="${connectors.http}" />
-		<copy todir="${connectors.http}">
-			<fileset dir="${src}/com/mirth/connect/connectors/http">
-				<include name="*.xml" />
-			</fileset>
-		</copy>
-		<copy todir="${connectors.http}/lib" failonerror="false">
-			<fileset dir="${lib.extensions}/http" />
-		</copy>
-		<jar destfile="${connectors.http}/http-shared.jar" basedir="${classes}">
-			<include name="com/mirth/connect/connectors/http/HttpReceiverProperties.class" />
-			<include name="com/mirth/connect/connectors/http/HttpDispatcherProperties.class" />
-			<include name="com/mirth/connect/connectors/http/HttpStaticResource.class" />
-			<include name="com/mirth/connect/connectors/http/HttpStaticResource$ResourceType.class" />
-			<include name="com/mirth/connect/connectors/http/HttpConnectorServletInterface.class" />
-		</jar>
-		<jar destfile="${connectors.http}/http-server.jar">
-			<fileset dir="${classes}">
-				<include name="com/mirth/connect/connectors/http/**" />
-				<exclude name="com/mirth/connect/connectors/http/HttpReceiverProperties.class" />
-				<exclude name="com/mirth/connect/connectors/http/HttpDispatcherProperties.class" />
-				<exclude name="com/mirth/connect/connectors/http/HttpStaticResource.class" />
-				<exclude name="com/mirth/connect/connectors/http/HttpStaticResource$ResourceType.class" />
-				<exclude name="com/mirth/connect/connectors/http/HttpConnectorServletInterface.class" />
-			</fileset>
-		</jar>
-
-		<!-- connectors.jdbc -->
-		<mkdir dir="${connectors.jdbc}" />
-		<copy todir="${connectors.jdbc}">
-			<fileset dir="${src}/com/mirth/connect/connectors/jdbc">
-				<include name="*.xml" />
-			</fileset>
-		</copy>
-		<copy todir="${connectors.jdbc}/lib" failonerror="false">
-			<fileset dir="${lib.extensions}/jdbc" />
-		</copy>
-		<jar destfile="${connectors.jdbc}/jdbc-shared.jar" basedir="${classes}">
-			<include name="com/mirth/connect/connectors/jdbc/DatabaseReceiverProperties.class" />
-			<include name="com/mirth/connect/connectors/jdbc/DatabaseDispatcherProperties.class" />
-			<include name="com/mirth/connect/connectors/jdbc/DatabaseConnectionInfo.class" />
-			<include name="com/mirth/connect/connectors/jdbc/Table.class" />
-			<include name="com/mirth/connect/connectors/jdbc/Column.class" />
-			<include name="com/mirth/connect/connectors/jdbc/DatabaseConnectorServletInterface.class" />
-		</jar>
-		<jar destfile="${connectors.jdbc}/jdbc-server.jar">
-			<fileset dir="${classes}">
-				<include name="com/mirth/connect/connectors/jdbc/**" />
-				<exclude name="com/mirth/connect/connectors/jdbc/DatabaseReceiverProperties.class" />
-				<exclude name="com/mirth/connect/connectors/jdbc/DatabaseDispatcherProperties.class" />
-				<exclude name="com/mirth/connect/connectors/jdbc/DatabaseConnectionInfo.class" />
-				<exclude name="com/mirth/connect/connectors/jdbc/Table.class" />
-				<exclude name="com/mirth/connect/connectors/jdbc/Column.class" />
-				<exclude name="com/mirth/connect/connectors/jdbc/DatabaseConnectorServletInterface.class" />
-			</fileset>
-		</jar>
-
-		<!-- connectors.jms -->
-		<mkdir dir="${connectors.jms}" />
-		<copy todir="${connectors.jms}">
-			<fileset dir="${src}/com/mirth/connect/connectors/jms">
-				<include name="*.xml" />
-			</fileset>
-		</copy>
-		<copy todir="${connectors.jms}/lib" failonerror="false">
-			<fileset dir="${lib.extensions}/jms" />
-		</copy>
-		<jar destfile="${connectors.jms}/jms-shared.jar" basedir="${classes}">
-			<include name="com/mirth/connect/connectors/jms/JmsConnectorProperties.class" />
-			<include name="com/mirth/connect/connectors/jms/JmsReceiverProperties.class" />
-			<include name="com/mirth/connect/connectors/jms/JmsDispatcherProperties.class" />
-			<include name="com/mirth/connect/connectors/jms/JmsConnectorServletInterface.class" />
-		</jar>
-		<jar destfile="${connectors.jms}/jms-server.jar">
-			<fileset dir="${classes}">
-				<include name="com/mirth/connect/connectors/jms/**" />
-				<exclude name="com/mirth/connect/connectors/jms/JmsConnectorProperties.class" />
-				<exclude name="com/mirth/connect/connectors/jms/JmsReceiverProperties.class" />
-				<exclude name="com/mirth/connect/connectors/jms/JmsDispatcherProperties.class" />
-				<exclude name="com/mirth/connect/connectors/jms/JmsConnectorServletInterface.class" />
-			</fileset>
-		</jar>
-
-		<!-- connectors.js -->
-		<mkdir dir="${connectors.js}" />
-		<copy todir="${connectors.js}">
-			<fileset dir="${src}/com/mirth/connect/connectors/js">
-				<include name="*.xml" />
-			</fileset>
-		</copy>
-		<copy todir="${connectors.js}/lib" failonerror="false">
-			<fileset dir="${lib.extensions}/js" />
-		</copy>
-		<jar destfile="${connectors.js}/js-shared.jar" basedir="${classes}">
-			<include name="com/mirth/connect/connectors/js/JavaScriptReceiverProperties.class" />
-			<include name="com/mirth/connect/connectors/js/JavaScriptDispatcherProperties.class" />
-		</jar>
-		<jar destfile="${connectors.js}/js-server.jar">
-			<fileset dir="${classes}">
-				<include name="com/mirth/connect/connectors/js/**" />
-				<exclude name="com/mirth/connect/connectors/js/JavaScriptReceiverProperties.class" />
-				<exclude name="com/mirth/connect/connectors/js/JavaScriptDispatcherProperties.class" />
-			</fileset>
-		</jar>
-
-		<!-- connectors.smtp -->
-		<mkdir dir="${connectors.smtp}" />
-		<copy todir="${connectors.smtp}">
-			<fileset dir="${src}/com/mirth/connect/connectors/smtp">
-				<include name="*.xml" />
-			</fileset>
-		</copy>
-		<copy todir="${connectors.smtp}/lib" failonerror="false">
-			<fileset dir="${lib.extensions}/smtp" />
-		</copy>
-		<jar destfile="${connectors.smtp}/smtp-shared.jar" basedir="${classes}">
-			<include name="com/mirth/connect/connectors/smtp/SmtpDispatcherProperties.class" />
-			<include name="com/mirth/connect/connectors/smtp/SmtpConnectorServletInterface.class" />
-			<include name="com/mirth/connect/connectors/smtp/Attachment.class" />
-		</jar>
-		<jar destfile="${connectors.smtp}/smtp-server.jar">
-			<fileset dir="${classes}">
-				<include name="com/mirth/connect/connectors/smtp/**" />
-				<exclude name="com/mirth/connect/connectors/smtp/SmtpDispatcherProperties.class" />
-				<exclude name="com/mirth/connect/connectors/smtp/SmtpConnectorServletInterface.class" />
-				<exclude name="com/mirth/connect/connectors/smtp/Attachment.class" />
-			</fileset>
-		</jar>
-
-		<!-- connectors.tcp -->
-		<mkdir dir="${connectors.tcp}" />
-		<copy todir="${connectors.tcp}">
-			<fileset dir="${src}/com/mirth/connect/connectors/tcp">
-				<include name="*.xml" />
-			</fileset>
-		</copy>
-		<copy todir="${connectors.tcp}/lib" failonerror="false">
-			<fileset dir="${lib.extensions}/tcp" />
-		</copy>
-		<jar destfile="${connectors.tcp}/tcp-shared.jar" basedir="${classes}">
-			<include name="com/mirth/connect/connectors/tcp/TcpReceiverProperties.class" />
-			<include name="com/mirth/connect/connectors/tcp/TcpDispatcherProperties.class" />
-			<include name="com/mirth/connect/connectors/tcp/TcpConnectorServletInterface.class" />
-		</jar>
-		<jar destfile="${connectors.tcp}/tcp-server.jar">
-			<fileset dir="${classes}">
-				<include name="com/mirth/connect/connectors/tcp/**" />
-				<exclude name="com/mirth/connect/connectors/tcp/TcpReceiverProperties.class" />
-				<exclude name="com/mirth/connect/connectors/tcp/TcpDispatcherProperties.class" />
-				<exclude name="com/mirth/connect/connectors/tcp/TcpConnectorServletInterface.class" />
-			</fileset>
-		</jar>
-
-		<!-- connectors.vm -->
-		<mkdir dir="${connectors.vm}" />
-		<copy todir="${connectors.vm}">
-			<fileset dir="${src}/com/mirth/connect/connectors/vm">
-				<include name="*.xml" />
-			</fileset>
-		</copy>
-		<copy todir="${connectors.vm}/lib" failonerror="false">
-			<fileset dir="${lib.extensions}/vm" />
-		</copy>
-		<jar destfile="${connectors.vm}/vm-shared.jar" basedir="${classes}">
-			<include name="com/mirth/connect/connectors/vm/VmReceiverProperties.class" />
-			<include name="com/mirth/connect/connectors/vm/VmDispatcherProperties.class" />
-		</jar>
-		<jar destfile="${connectors.vm}/vm-server.jar">
-			<fileset dir="${classes}">
-				<include name="com/mirth/connect/connectors/vm/**" />
-				<exclude name="com/mirth/connect/connectors/vm/VmReceiverProperties.class" />
-				<exclude name="com/mirth/connect/connectors/vm/VmDispatcherProperties.class" />
-			</fileset>
-		</jar>
-
-		<!-- connectors.ws -->
-		<mkdir dir="${connectors.ws}" />
-		<copy todir="${connectors.ws}">
-			<fileset dir="${src}/com/mirth/connect/connectors/ws">
-				<include name="*.xml" />
-			</fileset>
-		</copy>
-		<copy todir="${connectors.ws}/lib" failonerror="false">
-			<fileset dir="${lib.extensions}/ws" />
-		</copy>
-		<jar destfile="${connectors.ws}/ws-shared.jar" basedir="${classes}">
-			<include name="com/mirth/connect/connectors/ws/Binding.class" />
-			<include name="com/mirth/connect/connectors/ws/WebServiceReceiverProperties.class" />
-			<include name="com/mirth/connect/connectors/ws/WebServiceDispatcherProperties.class" />
-			<include name="com/mirth/connect/connectors/ws/DefinitionServiceMap.class" />
-			<include name="com/mirth/connect/connectors/ws/DefinitionServiceMap$DefinitionPortMap.class" />
-			<include name="com/mirth/connect/connectors/ws/DefinitionServiceMap$PortInformation.class" />
-			<include name="com/mirth/connect/connectors/ws/WebServiceConnectorServletInterface.class" />
-		</jar>
-		<jar destfile="${connectors.ws}/ws-server.jar">
-			<fileset dir="${classes}">
-				<include name="com/mirth/connect/connectors/ws/**" />
-				<exclude name="com/mirth/connect/connectors/ws/Binding.class" />
-				<exclude name="com/mirth/connect/connectors/ws/WebServiceReceiverProperties.class" />
-				<exclude name="com/mirth/connect/connectors/ws/WebServiceDispatcherProperties.class" />
-				<exclude name="com/mirth/connect/connectors/ws/DefinitionServiceMap.class" />
-				<exclude name="com/mirth/connect/connectors/ws/DefinitionServiceMap$DefinitionPortMap.class" />
-				<exclude name="com/mirth/connect/connectors/ws/DefinitionServiceMap$PortInformation.class" />
-				<exclude name="com/mirth/connect/connectors/ws/WebServiceConnectorServletInterface.class" />
-			</fileset>
-		</jar>
-
 		<!-- set the version on all connectors -->
 		<replace dir="${extensions}" token="@mirthversion" value="${version}">
 			<include name="**/*.xml" />
@@ -836,26 +563,6 @@
 			<exclude name="com/mirth/connect/plugins/mllpmode/MLLPModeProperties.class" />
 		</jar>
 
-
-		<!-- plugins.astmmode -->
-		<mkdir dir="${plugins.astmmode}" />
-		<copy todir="${plugins.astmmode}">
-			<fileset dir="${src}/com/mirth/connect/plugins/astmmode">
-				<include name="*.xml" />
-			</fileset>
-		</copy>
-		<copy todir="${plugins.astmmode}/lib" failonerror="false">
-			<fileset dir="${lib.extensions}/astmmode" />
-		</copy>
-		<jar destfile="${plugins.astmmode}/astmmode-shared.jar" basedir="${classes}">
-			<include name="com/mirth/connect/plugins/astmmode/ASTMModeProperties.class" />
-		</jar>
-		<jar destfile="${plugins.astmmode}/astmmode-server.jar" basedir="${classes}">
-			<include name="com/mirth/connect/plugins/astmmode/**" />
-			<exclude name="com/mirth/connect/plugins/astmmode/ASTMModeProperties.class" />
-		</jar>
-
-
 		<!-- plugins.pdfviewer -->
 		<mkdir dir="${plugins.pdfviewer}" />
 		<copy todir="${plugins.pdfviewer}">
@@ -963,62 +670,10 @@
 
 	<target name="create-setup" depends="init">
 		<echo>Sub-project files have been copied into setup</echo>
-
-		<!-- create the setup directory -->
-		<mkdir dir="${setup}" />
-		<mkdir dir="${setup.conf}" />
-		<mkdir dir="${setup.extensions}" />
-		<mkdir dir="${setup.public_html}" />
-		<mkdir dir="${setup.public_api_html}" />
-		<mkdir dir="${setup.server.lib}" />
-		<mkdir dir="${setup.client.lib}" />
-		<mkdir dir="${setup.manager.lib}" />
-		<mkdir dir="${setup.cli.lib}" />
-		<mkdir dir="${setup.logs}" />
-		<mkdir dir="${setup.docs}" />
-		<mkdir dir="${setup.server.launcher.lib}" />
-
-		<!-- copy lib -->
-		<copy todir="${setup.server.lib}">
-			<fileset dir="${lib}">
-				<exclude name="ant/**" />
-				<exclude name="extensions/**" />
-			</fileset>
-		</copy>
-
-		<!-- copy conf files -->
-		<copy todir="${setup.conf}">
-			<fileset dir="${conf}" />
-		</copy>
-
-		<!-- copy public html files -->
-		<copy todir="${setup.public_html}">
-			<fileset dir="${public_html}">
-				<exclude name="Thumbs.db" />
-			</fileset>
-		</copy>
-		
-		<replace dir="${setup.public_html}" token="@mirthversion" value="${version}">
-			<include name="*.html" />
-		</replace>
-		
-		<!-- copy Swagger UI files -->
-		<copy todir="${setup.public_api_html}">
-			<fileset dir="${public_api_html}">
-				<exclude name="Thumbs.db" />
-			</fileset>
-		</copy>
-
 		<!-- copy extensions files -->
 		<copy todir="${setup.extensions}">
 			<fileset dir="${extensions}" />
 		</copy>
-
-		<!-- copy docs files -->
-		<copy todir="${setup.docs}">
-			<fileset dir="${docs}" />
-		</copy>
-
 		<!-- create the server jar -->
 		<jar destfile="${setup.server.lib}/${server.jar}" basedir="${classes}">
 			<include name="com/mirth/connect/server/**" />
@@ -1033,33 +688,6 @@
 			<exclude name="com/mirth/connect/server/launcher/**" />
 			<exclude name="org/dcm4che2/**" />
 		</jar>
-
-		<!-- create the dbconf jar -->
-		<jar destfile="${setup.server.lib}/${dbconf.jar}" basedir="${dbconf}" />
-
-		<!-- create the mirth-launcher jar -->
-		<jar destfile="${setup}/${mirth-launcher.jar}" basedir="${classes}">
-			<include name="com/mirth/connect/server/launcher/**" />
-			<include name="com/mirth/connect/server/extprops/**" />
-
-			<manifest>
-				<attribute name="Main-Class" value="com.mirth.connect.server.launcher.MirthLauncher" />
-				<attribute name="Class-Path" value="server-lib/commons/commons-io-2.3.jar conf/" />
-			</manifest>
-		</jar>
-		
-		<!-- create the userutil-sources jar -->
-		<jar destfile="${setup.client.lib}/${userutil-sources.jar}" basedir="${src}">
-			<include name="com/mirth/connect/userutil/**.java" />
-			<include name="com/mirth/connect/server/userutil/**.java" />
-			<exclude name="**/package-info.java" />
-		</jar>
-
-		<!-- remove svn folders -->
-		<delete>
-			<fileset dir="${setup}" includes="**/.svn" />
-		</delete>
-		
 		<taskdef resource="net/sf/antcontrib/antlib.xml" classpathref="classpath" />
 
 		<!-- modify jar manifests -->
@@ -1082,19 +710,19 @@
 		<echo message="[Thread Count: ${signjar_thread_count}] Signing jars for Java Web Start" />
 		<property file="${keystore_property_file}" />
 		
-		<for param="jarFile" parallel="true" threadCount="${signjar_thread_count}">
+		<!--<for param="jarFile" parallel="true" threadCount="${signjar_thread_count}">
 			<fileset dir="${setup.client.lib}" includes="**/*.jar" />
 			<fileset dir="${setup.extensions}" includes="**/*.jar" />
 			<sequential>
 				<retry retrycount="5" retrydelay="1000">
 					<signjar jar="@{jarFile}" alias="${key.alias}" keystore="${key.keystore}" storepass="${key.storepass}" keypass="${key.keypass}" storetype="${key.storetype}" tsaurl="http://sha256timestamp.ws.symantec.com/sha256/timestamp" digestalg="SHA-256">
-						<!-- http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=7127374 -->
+						&lt;!&ndash; http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=7127374 &ndash;&gt;
 						<sysproperty key="jsse.enableSNIExtension" value="false" />
 						<sysproperty key="https.protocols" value="TLSv1.2,TLSv1.1" />
 					</signjar>
 				</retry>
 			</sequential>
-		</for>
+		</for>-->
 	</target>
 
 	<target name="create-extension-zips" depends="create-setup">
@@ -1161,21 +789,21 @@
 
 	<target name="create-derby-db" depends="compile">
 		<!-- re-create the embedded database -->
-		<delete dir="mirthdb" />
-		<java classname="com.mirth.connect.server.tools.ScriptRunner" fork="true" dir="${basedir}" failonerror="true">
-			<classpath>
-				<pathelement location="${setup.server.lib}/${server.jar}" />
-				<pathelement location="classes" />
-				<pathelement location="${setup.conf}" />
-				<fileset dir="${lib}">
-					<include name="log4j-1.2.16.jar" />
-					<include name="database/derby-10.10.2.0.jar" />
-					<include name="database/derbytools-10.10.2.0.jar" />
-					<include name="commons/commons-io-2.3.jar" />
-				</fileset>
-			</classpath>
-			<arg value="dbconf/derby/derby-database.sql" />
-		</java>
+<!--		<delete dir="mirthdb" />-->
+<!--		<java classname="com.mirth.connect.server.tools.ScriptRunner" fork="true" dir="${basedir}" failonerror="true">-->
+<!--			<classpath>-->
+<!--				<pathelement location="${setup.server.lib}/${server.jar}" />-->
+<!--				<pathelement location="classes" />-->
+<!--				<pathelement location="${setup.conf}" />-->
+<!--				<fileset dir="${lib}">-->
+<!--					<include name="log4j-1.2.16.jar" />-->
+<!--					<include name="database/derby-10.10.2.0.jar" />-->
+<!--					<include name="database/derbytools-10.10.2.0.jar" />-->
+<!--					<include name="commons/commons-io-2.3.jar" />-->
+<!--				</fileset>-->
+<!--			</classpath>-->
+<!--			<arg value="dbconf/derby/derby-database.sql" />-->
+<!--		</java>-->
 	</target>
 
 	<target name="dev-launcher" depends="init" description="This runs Mirth using the setup launcher">
