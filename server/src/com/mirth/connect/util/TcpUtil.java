@@ -16,7 +16,8 @@ import org.apache.commons.lang3.StringUtils;
 public class TcpUtil {
 
     public static final String DEFAULT_LLP_START_BYTES = "0B"; // <VT>
-    public static final String DEFAULT_LLP_END_BYTES = "1C0D"; // <FS><CR>public static final String DEFAULT_ENQ = "005";
+    public static final String DEFAULT_LLP_END_BYTES = "1C0D"; // <FS><CR>
+   /* public static final String DEFAULT_ENQ = "005";
     public static final String DEFAULT_STX = "002";
     public static final String DEFAULT_MAX_FRAME_CONTENT_LEN = "240";
     public static final String DEFAULT_ETB = "017";
@@ -31,7 +32,23 @@ public class TcpUtil {
     public static final String DEFAULT_FS = "034";
     public static final String DEFAULT_GS = "035";
     public static final String DEFAULT_RS = "036";
-    public static final String DEFAULT_SFS = "027";
+    public static final String DEFAULT_SFS = "027";*/
+    public static final String DEFAULT_ENQ = "5";
+    public static final String DEFAULT_STX = "2";
+    public static final String DEFAULT_MAX_FRAME_CONTENT_LEN = "240";
+    public static final String DEFAULT_ETB = "17";
+    public static final String DEFAULT_ETX = "3";
+    public static final String DEFAULT_CHECKSUM_BYTE_LEN = "2";
+    public static final String DEFAULT_CR = "D";
+    public static final String DEFAULT_LF = "A";
+    public static final String DEFAULT_EOT = "4";
+    public static final String DEFAULT_ACK = "6";
+    public static final String DEFAULT_NAK = "25";
+    public static final String DEFAULT_MOR = ">";
+    public static final String DEFAULT_FS = "34";
+    public static final String DEFAULT_GS = "35";
+    public static final String DEFAULT_RS = "36";
+    public static final String DEFAULT_SFS = "27";
 
     public static boolean isValidHexString(String str) {
         return str.matches("^[0-9A-F]*$");

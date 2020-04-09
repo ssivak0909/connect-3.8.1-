@@ -16,8 +16,11 @@ import java.net.ConnectException;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.util.Map;
+import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.mirth.connect.plugins.astmmode.ASTMModeProperties;
+import com.mirth.connect.util.TcpUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.log4j.Logger;
@@ -252,59 +255,149 @@ public class TcpDispatcher extends DestinationConnector {
             BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream(), bufferSize);
             BatchStreamReader batchStreamReader = new DefaultBatchStreamReader(socket.getInputStream());
             StreamHandler streamHandler = transmissionModeProvider.getStreamHandler(socket.getInputStream(), bos, batchStreamReader, tcpDispatcherProperties.getTransmissionModeProperties());
-            streamHandler.write(getTemplateBytes(tcpDispatcherProperties, message));
-            bos.flush();
 
-            if (!tcpDispatcherProperties.isIgnoreResponse()) {
-                ThreadUtils.checkInterruptedStatus();
+            String pluginPointName = tcpDispatcherProperties.getTransmissionModeProperties().getPluginPointName();
+            if(!ASTMModeProperties.PLUGIN_POINT.equalsIgnoreCase(pluginPointName)) {
+                streamHandler.write(getTemplateBytes(tcpDispatcherProperties, message));
 
-                // Attempt to get the response from the remote endpoint
-                try {
-                    String info = "Waiting for response from " + SocketUtil.getInetAddress(socket) + " (Timeout: " + tcpDispatcherProperties.getResponseTimeout() + " ms)... ";
-                    eventController.dispatchEvent(new ConnectionStatusEvent(getChannelId(), getMetaDataId(), getDestinationName(), ConnectionStatusEventType.WAITING_FOR_RESPONSE, info));
-                    byte[] responseBytes = streamHandler.read();
-                    if (responseBytes != null) {
-                        responseData = new String(responseBytes, CharsetUtils.getEncoding(tcpDispatcherProperties.getCharsetEncoding()));
-                        responseStatusMessage = "Message successfully sent.";
-                    } else {
-                        responseStatusMessage = "Message successfully sent, but no response received.";
-                    }
+                bos.flush();
 
-                    streamHandler.commit(true);
-                    responseStatus = Status.SENT;
+                if (!tcpDispatcherProperties.isIgnoreResponse()) {
+                    ThreadUtils.checkInterruptedStatus();
 
-                    // We only want to validate the response if we were able to retrieve it successfully
-                    validateResponse = tcpDispatcherProperties.getDestinationConnectorProperties().isValidateResponse();
-                } catch (IOException e) {
-                    // An exception occurred while retrieving the response
-                    if (e instanceof SocketTimeoutException || e.getCause() != null && e.getCause() instanceof SocketTimeoutException) {
-                        responseStatusMessage = "Timeout waiting for response";
-
-                        if (!tcpDispatcherProperties.isQueueOnResponseTimeout()) {
-                            responseStatus = Status.ERROR;
+                    // Attempt to get the response from the remote endpoint
+                    try {
+                        String info = "Waiting for response from " + SocketUtil.getInetAddress(socket) + " (Timeout: " + tcpDispatcherProperties.getResponseTimeout() + " ms)... ";
+                        eventController.dispatchEvent(new ConnectionStatusEvent(getChannelId(), getMetaDataId(), getDestinationName(), ConnectionStatusEventType.WAITING_FOR_RESPONSE, info));
+                        byte[] responseBytes = streamHandler.read();
+                        if (responseBytes != null) {
+                            responseData = new String(responseBytes, CharsetUtils.getEncoding(tcpDispatcherProperties.getCharsetEncoding()));
+                            responseStatusMessage = "Message successfully sent.";
+                        } else {
+                            responseStatusMessage = "Message successfully sent, but no response received.";
                         }
-                    } else {
-                        responseStatusMessage = "Error receiving response";
+
+                        streamHandler.commit(true);
+                        responseStatus = Status.SENT;
+
+                        // We only want to validate the response if we were able to retrieve it successfully
+                        validateResponse = tcpDispatcherProperties.getDestinationConnectorProperties().isValidateResponse();
+                    } catch (IOException e) {
+                        // An exception occurred while retrieving the response
+                        if (e instanceof SocketTimeoutException || e.getCause() != null && e.getCause() instanceof SocketTimeoutException) {
+                            responseStatusMessage = "Timeout waiting for response";
+
+                            if (!tcpDispatcherProperties.isQueueOnResponseTimeout()) {
+                                responseStatus = Status.ERROR;
+                            }
+                        } else {
+                            responseStatusMessage = "Error receiving response";
+                        }
+
+                        responseError = ErrorMessageBuilder.buildErrorMessage(connectorProperties.getName(), responseStatusMessage + ": " + e.getMessage(), e);
+                        logger.warn(responseStatusMessage + " (" + connectorProperties.getName() + " \"" + getDestinationName() + "\" on channel " + getChannelId() + ").", e);
+                        eventController.dispatchEvent(new ErrorEvent(getChannelId(), getMetaDataId(), message.getMessageId(), ErrorEventType.DESTINATION_CONNECTOR, getDestinationName(), connectorProperties.getName(), responseStatusMessage + ".", e));
+                        eventController.dispatchEvent(new ConnectionStatusEvent(getChannelId(), getMetaDataId(), getDestinationName(), ConnectionStatusEventType.FAILURE, responseStatusMessage + " from " + SocketUtil.getInetAddress(socket)));
+
+                        closeSocketQuietly(socketKey);
+                    }
+                } else {
+                    try {
+                        // MIRTH-2980: Since we're ignoring responses, flush out the socket's input stream so it doesn't continually grow
+                        socket.getInputStream().skip(socket.getInputStream().available());
+                    } catch (IOException e) {
+                        logger.warn("Error flushing socket input stream.", e);
                     }
 
-                    responseError = ErrorMessageBuilder.buildErrorMessage(connectorProperties.getName(), responseStatusMessage + ": " + e.getMessage(), e);
-                    logger.warn(responseStatusMessage + " (" + connectorProperties.getName() + " \"" + getDestinationName() + "\" on channel " + getChannelId() + ").", e);
-                    eventController.dispatchEvent(new ErrorEvent(getChannelId(), getMetaDataId(), message.getMessageId(), ErrorEventType.DESTINATION_CONNECTOR, getDestinationName(), connectorProperties.getName(), responseStatusMessage + ".", e));
-                    eventController.dispatchEvent(new ConnectionStatusEvent(getChannelId(), getMetaDataId(), getDestinationName(), ConnectionStatusEventType.FAILURE, responseStatusMessage + " from " + SocketUtil.getInetAddress(socket)));
-
-                    closeSocketQuietly(socketKey);
-                }
-            } else {
-                try {
-                    // MIRTH-2980: Since we're ignoring responses, flush out the socket's input stream so it doesn't continually grow
-                    socket.getInputStream().skip(socket.getInputStream().available());
-                } catch (IOException e) {
-                    logger.warn("Error flushing socket input stream.", e);
+                    // We're ignoring the response, so always return a successful response
+                    responseStatus = Status.SENT;
+                    responseStatusMessage = "Message successfully sent.";
                 }
 
-                // We're ignoring the response, so always return a successful response
-                responseStatus = Status.SENT;
-                responseStatusMessage = "Message successfully sent.";
+            }else {
+                int count = 0;
+                Vector<String> vecMessages = getTemplateBytesVector(tcpDispatcherProperties, message);
+                String serverMessage = vecMessages.get(count);
+                byte[] clientResponse ;
+                String ack ;
+                String endOfTransimission = "";
+                //streamHandler.write( getTemplateBytesMessage(serverMessage,tcpDispatcherProperties, message));
+                while(!TcpUtil.DEFAULT_EOT.equalsIgnoreCase(endOfTransimission)){
+                    //((FrameStreamHandler)streamHandler).reset();
+                    serverMessage = vecMessages.get(count);
+                    endOfTransimission =  serverMessage;
+                    //clientResponse = streamHandler.read();
+                    ack = TcpUtil.DEFAULT_ACK;
+                    if(TcpUtil.DEFAULT_ACK.equalsIgnoreCase(ack)){
+                        serverMessage = vecMessages.get(++count);
+                        String logeeMsg = serverMessage;
+                        logeeMsg.replaceFirst("","");
+                        System.out.println(serverMessage+"  <-- serverMessage --> count"+count);
+                        if(TcpUtil.DEFAULT_EOT.equalsIgnoreCase(serverMessage)){
+                            break;
+                        }
+                        streamHandler.write( getTemplateBytesMessage(serverMessage,tcpDispatcherProperties, message));
+
+                        bos.flush();
+                        if (!tcpDispatcherProperties.isIgnoreResponse()) {
+                            ThreadUtils.checkInterruptedStatus();
+
+                            // Attempt to get the response from the remote endpoint
+                            try {
+                                String info = "Waiting for response from " + SocketUtil.getInetAddress(socket) + " (Timeout: " + tcpDispatcherProperties.getResponseTimeout() + " ms)... ";
+                                eventController.dispatchEvent(new ConnectionStatusEvent(getChannelId(), getMetaDataId(), getDestinationName(), ConnectionStatusEventType.WAITING_FOR_RESPONSE, info));
+                                byte[] responseBytes = streamHandler.read();
+                                if (responseBytes != null) {
+                                    responseData = new String(responseBytes, CharsetUtils.getEncoding(tcpDispatcherProperties.getCharsetEncoding()));
+                                    //System.out.println(responseData + " --> "+responseBytes);
+                                    responseStatusMessage = "Message successfully sent.";
+                                } else {
+                                    responseStatusMessage = "Message successfully sent, but no response received.";
+                                }
+
+                                //streamHandler.commit(true);
+                                responseStatus = Status.SENT;
+
+                                // We only want to validate the response if we were able to retrieve it successfully
+                                validateResponse = tcpDispatcherProperties.getDestinationConnectorProperties().isValidateResponse();
+                            } catch (IOException e) {
+                                // An exception occurred while retrieving the response
+                                if (e instanceof SocketTimeoutException || e.getCause() != null && e.getCause() instanceof SocketTimeoutException) {
+                                    responseStatusMessage = "Timeout waiting for response";
+
+                                    if (!tcpDispatcherProperties.isQueueOnResponseTimeout()) {
+                                        responseStatus = Status.ERROR;
+                                    }
+                                } else {
+                                    responseStatusMessage = "Error receiving response";
+                                }
+
+                                responseError = ErrorMessageBuilder.buildErrorMessage(connectorProperties.getName(), responseStatusMessage + ": " + e.getMessage(), e);
+                                logger.warn(responseStatusMessage + " (" + connectorProperties.getName() + " \"" + getDestinationName() + "\" on channel " + getChannelId() + ").", e);
+                                eventController.dispatchEvent(new ErrorEvent(getChannelId(), getMetaDataId(), message.getMessageId(), ErrorEventType.DESTINATION_CONNECTOR, getDestinationName(), connectorProperties.getName(), responseStatusMessage + ".", e));
+                                eventController.dispatchEvent(new ConnectionStatusEvent(getChannelId(), getMetaDataId(), getDestinationName(), ConnectionStatusEventType.FAILURE, responseStatusMessage + " from " + SocketUtil.getInetAddress(socket)));
+
+                                closeSocketQuietly(socketKey);
+                            }
+                        } else {
+                            try {
+                                // MIRTH-2980: Since we're ignoring responses, flush out the socket's input stream so it doesn't continually grow
+                                socket.getInputStream().skip(socket.getInputStream().available());
+                            } catch (IOException e) {
+                                logger.warn("Error flushing socket input stream.", e);
+                            }
+
+                            // We're ignoring the response, so always return a successful response
+                            responseStatus = Status.SENT;
+                            responseStatusMessage = "Message successfully sent.";
+                        }
+                    }
+                    System.out.println(ack);
+                }
+
+                System.out.println("came out");
+                //streamHandler.write(getTemplateBytes(tcpDispatcherProperties, message));
+                System.out.println(streamHandler.read());
             }
 
             if (tcpDispatcherProperties.isKeepConnectionOpen() && (getCurrentState() == DeployedState.STARTED || getCurrentState() == DeployedState.STARTING)) {
@@ -441,11 +534,89 @@ public class TcpDispatcher extends DestinationConnector {
      */
     private byte[] getTemplateBytes(TcpDispatcherProperties tcpSenderProperties, ConnectorMessage connectorMessage) throws UnsupportedEncodingException {
         byte[] bytes = new byte[0];
-
         if (tcpSenderProperties.getTemplate() != null) {
             bytes = getAttachmentHandlerProvider().reAttachMessage(tcpSenderProperties.getTemplate(), connectorMessage, CharsetUtils.getEncoding(tcpSenderProperties.getCharsetEncoding()), tcpSenderProperties.isDataTypeBinary(), tcpSenderProperties.getDestinationConnectorProperties().isReattachAttachments());
         }
 
         return bytes;
     }
+
+    /*
+     * Returns the byte array representation of the connector properties template, using the
+     * properties to determine whether or not to encode in Base64, and what charset to use.
+     */
+    private byte[] getTemplateBytesMessage(String mess,TcpDispatcherProperties tcpSenderProperties, ConnectorMessage connectorMessage) throws UnsupportedEncodingException {
+        byte[] bytes = new byte[0];
+        if (tcpSenderProperties.getTemplate() != null) {
+            bytes = getAttachmentHandlerProvider().reAttachMessage(mess, connectorMessage, CharsetUtils.getEncoding(tcpSenderProperties.getCharsetEncoding()), tcpSenderProperties.isDataTypeBinary(), tcpSenderProperties.getDestinationConnectorProperties().isReattachAttachments());
+        }
+
+        return bytes;
+    }
+
+    public static Vector<String> vecMessages = new Vector<String>();
+    /*
+     * Returns the byte array representation of the connector properties template, using the
+     * properties to determine whether or not to encode in Base64, and what charset to use.
+     */
+    private Vector<String> getTemplateBytesVector(TcpDispatcherProperties tcpSenderProperties, ConnectorMessage connectorMessage) throws UnsupportedEncodingException {
+        byte[] bytes = new byte[0];
+       // System.out.println("msg :"+tcpSenderProperties.getTemplate());
+        String msg = tcpSenderProperties.getTemplate();
+        int count = 0;
+        vecMessages.add(TcpUtil.DEFAULT_ENQ);
+        String[] lines=msg.split("\\r");
+        addTagIndex(vecMessages,lines,count);
+        vecMessages.add(TcpUtil.DEFAULT_EOT);
+        return vecMessages;
+    }
+    public int addTagIndex(Vector<String> vecMessages, String[] lines, int count){
+        for(String line:lines) {
+            System.out.println("Original Message : "+line);
+            boolean isETB = false;
+            count = count+1;
+            if(line.length()>240){
+                String[] subLines = {line.substring(240)};
+                isETB = true;
+                line= count+line.substring(0,240);
+                line = astmMessage(line,isETB);
+                System.out.println("ASTM Value Message : " + line);
+                vecMessages.add(line);
+                addTagIndex(vecMessages,subLines,count);
+                count = count+1;
+            }else {
+                line = count + line;
+                line = astmMessage(line, isETB);
+                System.out.println("ASTM Value Message : " + line);
+                vecMessages.add(line);
+            }
+        }
+        return 0;
+    }
+
+    public String astmMessage(String retmsg, boolean isETB) {
+        String logMessage;
+        logMessage = "[STX]" + retmsg + (isETB ? "[ETB]" : "[CR]" + "[ETX]")+ getCheckSum(retmsg,isETB) + "[CR]" + "[LF]";
+        System.out.println("ASTM Logging Message : " + logMessage);
+        String getETBorETX = isETB ? TcpUtil.DEFAULT_ETB : TcpUtil.DEFAULT_CR + TcpUtil.DEFAULT_ETX;
+        retmsg = TcpUtil.DEFAULT_STX + retmsg + getETBorETX + getCheckSum(retmsg,isETB) + TcpUtil.DEFAULT_CR + TcpUtil.DEFAULT_LF;
+        return retmsg;
+    }
+
+
+    public String getCheckSum(String msg, boolean isETB) {
+        int sum = 0;
+        for (int i = 0; i < msg.length(); i++) {
+            sum += msg.charAt(i);
+        }
+        sum += isETB ? 23 : 16; //adding CR and ETX AND ETB
+        sum = sum % 256;
+        String checksum = Integer.toHexString(sum).toUpperCase();
+        if (checksum.length() == 1) {
+            checksum = "0" + checksum;
+        }
+        //System.out.println("\n Check Sum is ="+checksum);
+        return checksum;
+    }
+
 }

@@ -15,13 +15,26 @@ import com.mirth.connect.model.transmission.framemode.FrameStreamHandler;
 import com.mirth.connect.util.TcpUtil;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.log4j.Logger;
-import org.bouncycastle.util.Arrays;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 public class ASTMv2StreamHandler extends FrameStreamHandler {
+
+    protected byte[] startOfMessageBytes;
+    protected byte[] endOfMessageBytes;
+    protected boolean returnDataOnException; // Determines whether data should be returned if an exception occurs.
+
+    private ByteArrayOutputStream capturedBytes; // The bytes captured so far by the reader, not including any in the end bytes buffer.
+    private List<Byte> endBytesBuffer; // An interim buffer of bytes used to capture the ending byte sequence.
+    private byte lastByte; // The last byte returned from getNextByte.
+    private boolean streamDone; // This is true if an EOF has been read in, or if the ending byte sequence has been detected.
+
+    private boolean checkStartOfMessageBytes;
+    private int currentByte;
 
     private Logger logger = Logger.getLogger(this.getClass());
 
@@ -73,22 +86,19 @@ public class ASTMv2StreamHandler extends FrameStreamHandler {
                      */
                     response = super.read();
                 }
-
-                if (Arrays.areEqual(response, ackBytes)) {
+done =true;
+                /*if (Arrays.areEqual(response, ackBytes)) {
                     done = true;
                 } else if (Arrays.areEqual(response, nackBytes)) {
                     throw new ASTMv2StreamHandlerException("Negative commit acknowledgement received.");
                 } else {
                     throw new ASTMv2StreamHandlerException("Invalid acknowledgement block received.");
-                }
+                }*/
             } catch (IOException e) {
                 if (firstCause == null) {
                     firstCause = e;
                 }
 
-                if (maxRetries > 0 && retryCount++ == maxRetries) {
-                    throw new ASTMv2StreamHandlerException("Maximum retry count reached. First cause: " + firstCause.getMessage(), firstCause);
-                }
             }
         }
     }
@@ -102,4 +112,6 @@ public class ASTMv2StreamHandler extends FrameStreamHandler {
                 ", committed=" + committed +
                 '}';
     }
+
+
 }

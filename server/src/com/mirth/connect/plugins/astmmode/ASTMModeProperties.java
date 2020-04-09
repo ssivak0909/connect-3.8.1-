@@ -28,7 +28,7 @@ public class ASTMModeProperties extends FrameModeProperties {
         useMLLPv2 = false;
         ackBytes = "06"; // <ACK>
         nackBytes = "15"; // <NAK>
-        maxRetries = "2";
+        maxRetries = "5";
     }
 
     public boolean isUseMLLPv2() {
