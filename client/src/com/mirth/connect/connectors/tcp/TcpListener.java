@@ -78,6 +78,9 @@ public class TcpListener extends ConnectorSettingsPanel implements ActionListene
             if (pluginPointName.equals("MLLP")) {
                 defaultProvider = LoadedExtensions.getInstance().getTransmissionModePlugins().get(pluginPointName).createProvider();
             }
+            if (pluginPointName.equals("ASTM")) {
+                System.out.println("ASTM");
+            }
         }
 
         transmissionModeComboBox.setModel(model);
